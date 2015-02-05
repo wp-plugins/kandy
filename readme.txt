@@ -94,8 +94,10 @@ Kandy Shortcode not working: check your kandy api key, domain secret key for you
 Internationalizing: get the /languages/kandy.pot file and make your /languages/*.mo file to locale your language.
 
 == Screenshots ==
-1. Kandy Settings
-2. Kandy Video Chat
-3. Kandy Cutomization
+1. Kandy Showcase
+2. Kandy Settings
+3. Kandy User Assignment
+4. Kandy Cutomization
+
 
 
