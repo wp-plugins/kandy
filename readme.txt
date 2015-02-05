@@ -97,7 +97,7 @@ Internationalizing: get the /languages/kandy.pot file and make your /languages/*
 1. Kandy Showcase
 2. Kandy Settings
 3. Kandy User Assignment
-4. Kandy Cutomization
-
-
-
+4. Kandy edit kandy user assignment
+5. Kandy Cutomization
+6. Kandy edit css file
+7. Kandy Help
