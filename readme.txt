@@ -23,7 +23,7 @@ Home page: http://www.kandy.io/
 
 * For some transactions (like instant messaging) and state information (presence), <strong>KANDY</strong> utilizes WebSockets or Long Polling depending upon the browser specifics. The <strong>KANDY</strong> JavaScript library creates these connections depending on your application regarding and will manage these without any requirement from your application.
 
-<h3>DOCUMENT<h3>
+<strong>HOW TO USE</strong>
 
 - Create new page with kandy shortcode syntax:
 
@@ -47,12 +47,7 @@ Home page: http://www.kandy.io/
 
     + <strong>Kandy Status</trong>
 
-        [kandyStatus
-            class = "myStatusStyle"
-            id = "myStatus"
-            title = "My Status"
-            style = "..."]
-        [/kandyStatus]
+        [kandyStatus class = "myStatusStyle" id = "myStatus"]
 
     + <strong>Kandy Address Book</strong>
 
@@ -81,13 +76,13 @@ Home page: http://www.kandy.io/
 
     + Kandy Presence
 
-        [kandyStatus class="myStatusStype" id="myStatus"][/kandyStatus]
-        [kandyAddressBook class="myAddressBookStyle" id="myContact"][/kandyAddressBook]
+        [kandyStatus class="myStatusStype" id="myStatus"]
+        [kandyAddressBook class="myAddressBookStyle" id="myContact"]
 
 
     + Kandy Chat
 
-        [kandyChat class="myChatStyle" id ="my-chat"][/kandyChat]
+        [kandyChat class="myChatStyle" id ="my-chat"]
 
 
 
