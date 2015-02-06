@@ -16,7 +16,7 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
 **Kandy Video Button**: make a video call button component(video call)
 ```sh
 [kandyVideoButton
-        class = "myButtonStype"
+        class = "myButtonStyle"
         id = "my-video-button"
         incomingLabel = "Incoming Call..."
         incomingButtonText = "Answer"
@@ -38,7 +38,7 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
   **Kandy Voice Button**: make a voice call button component (voice call)
 ```sh
 [kandyVoiceButton
-        class = "myButtonStype"
+        class = "myButtonStyle"
         id = "my-video-button"
         incomingLabel = "Incoming Call..."
         incomingButtonText = "Answer"
@@ -83,7 +83,7 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
 ```
 **Kandy Video Call**: use a video call button and two video(**myVideo** and **theirVideo** id is required).
    ```sh
-[kandyVideoButton class="myButtonStype"]
+[kandyVideoButton class="myButtonStyle"]
 [kandyVideo title="Me" id="myVideo" style = "width: 300px;height: 225px;"]
 [kandyVideo title="Their" id="theirVideo" style = "width:300px;height: 225px;"]
 ```
@@ -93,7 +93,7 @@ Two **kandyVideo** object should be inline because some editor will insert a bre
 
 **Kandy Presence**: use a kandystatus and kandy addressbook compobent
 ```sh
-[kandyStatus class="myStatusStype" id="myStatus"]
+[kandyStatus class="myStatusStyle" id="myStatus"]
 [kandyAddressBook class="myAddressBookStyle" id="myContact"]
 ```
 
