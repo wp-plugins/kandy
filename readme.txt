@@ -23,7 +23,7 @@ Home page: http://www.kandy.io/
 
 * For some transactions (like instant messaging) and state information (presence), <strong>KANDY</strong> utilizes WebSockets or Long Polling depending upon the browser specifics. The <strong>KANDY</strong> JavaScript library creates these connections depending on your application regarding and will manage these without any requirement from your application.
 
-<strong>HOW TO USE</strong>
+<strong>HOW TO USE</</strong>
 
 - Create new page with kandy shortcode syntax:
 
@@ -101,3 +101,5 @@ Internationalizing: get the /languages/kandy.pot file and make your /languages/*
 5. Kandy Cutomization
 6. Kandy edit css file
 7. Kandy Help
+
+
