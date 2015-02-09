@@ -2,7 +2,8 @@
 Contributors: Kodeplusdev
 Tags: Kandy
 Requires at least: 3.8
-Tested up to: 4.0
+Tested up to: 4.1
+Stable tag: 1.4
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -23,7 +24,7 @@ Home page: http://www.kandy.io/
 
 * For some transactions (like instant messaging) and state information (presence), <strong>KANDY</strong> utilizes WebSockets or Long Polling depending upon the browser specifics. The <strong>KANDY</strong> JavaScript library creates these connections depending on your application regarding and will manage these without any requirement from your application.
 
-<strong>HOW TO USE</</strong>
+<strong>HOW TO USE</strong>
 
 - Create new page with kandy shortcode syntax:
 
@@ -89,9 +90,9 @@ Home page: http://www.kandy.io/
 <strong>More information:</strong> https://github.com/kodeplusdev/kandywordpress
 
 == Frequently Asked Questions ==
-Kandy Shortcode not working: check your kandy api key, domain secret key for your application at Kandy > Settings.
+1. <strong>Kandy Shortcode not working:</strong> check your kandy api key, domain secret key for your application at Kandy > Settings.
 
-Internationalizing: get the /languages/kandy.pot file and make your /languages/*.mo file to locale your language.
+2. <strong>Internationalizing:</strong> get the /languages/kandy.pot file and make your /languages/*.mo file to locale your language.
 
 == Screenshots ==
 1. Kandy Showcase
