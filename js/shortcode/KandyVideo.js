@@ -2,14 +2,14 @@
  * You login success
  */
 window.loginsuccess_callback = function () {
-    changeUIState('READY_FOR_CALLING');
+    //do something here
 }
 
 /**
  * you login fail
  */
 window.loginfailed_callback = function () {
-
+//do something here
 }
 
 /**
@@ -18,7 +18,7 @@ window.loginfailed_callback = function () {
  * @param isAnonymous
  */
 window.callincoming_callback = function (call, isAnonymous) {
-    changeUIState('BEING_CALLED');
+    //do something here
 }
 
 /**
@@ -26,7 +26,7 @@ window.callincoming_callback = function (call, isAnonymous) {
  * @param call
  */
 window.oncall_callback = function (call) {
-    changeUIState("ON_CALL");
+    //do something here
 }
 /**
  * Some one answer your call
@@ -34,14 +34,14 @@ window.oncall_callback = function (call) {
  * @param isAnonymous
  */
 window.callanswered_callback = function (call, isAnonymous) {
-    changeUIState("ON_CALL");
+    //do something here
 }
 
 /**
  * end call callback
  */
 window.callended_callback = function () {
-    changeUIState('READY_FOR_CALLING');
+    //do something here
 }
 
 
@@ -50,7 +50,7 @@ window.callended_callback = function () {
  * @param stage
  */
 window.answerVideoCall_callback = function (stage) {
-    changeUIState(stage);
+    //do something here
 }
 
 
@@ -59,7 +59,7 @@ window.answerVideoCall_callback = function (stage) {
  * @param stage
  */
 window.answerVoiceCall_callback = function (stage) {
-    changeUIState(stage);
+    //do something here
 }
 
 /**
@@ -67,7 +67,7 @@ window.answerVoiceCall_callback = function (stage) {
  * @param stage
  */
 window.makeCall_callback = function (stage) {
-    changeUIState(stage);
+    //do something here
 }
 
 /**
@@ -75,7 +75,7 @@ window.makeCall_callback = function (stage) {
  * @param stage
  */
 window.endCall_callback = function (stage) {
-    changeUIState(stage);
+    //do something here
 }
 
 /**
@@ -83,28 +83,14 @@ window.endCall_callback = function (stage) {
  * @param state
  */
 window.remotevideoinitialized_callack = function(videoTag){
-    //do some thing with your remote video
+    //do something here
 }
 /**
  * Your local video callback
  * @param videoTag
  */
 window.localvideoinitialized_callback = function(videoTag){
-    //do some thing with your local video
+    //do something here
 }
-window.changeUIState = function (state) {
-    switch (state) {
-        case 'READY_FOR_CALLING':
-            $(".kandyVideo").show();
 
-            break;
-        case 'BEING_CALLED':
-            break;
-        case 'CALLING':
-            break;
-        case 'ON_CALL':
-
-            break;
-    }
-}
 

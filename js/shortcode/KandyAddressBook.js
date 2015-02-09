@@ -2,15 +2,14 @@
  * you login successfully
  */
 window.loginsuccess_callback = function () {
-    changeUIState("LOGGED_IN");
+    //do something here
 }
 
 /**
  * You login fail
  */
 window.loginfailed_callback = function () {
-
-    changeUIState("LOGGED_OUT");
+    //do something here
 }
 /**
  * Status Notification Callback
@@ -22,15 +21,3 @@ window.loginfailed_callback = function () {
 window.presencenotification_callack = function(){
     //do something
 }
-
-window.changeUIState = function (state) {
-    switch (state) {
-        case 'LOGGED_OUT':
-            $("#dirSearchResults div:not(:first)").remove();
-            break;
-        case 'LOGGED_IN':
-            //do some thing
-            break;
-    }
-}
-

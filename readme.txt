@@ -32,15 +32,9 @@ Home page: http://www.kandy.io/
 
         [kandyVideoButton class = "myButtonStype" id = "my-video-button"]
 
-
-
     + <strong>Kandy Video</strong>
 
-        [kandyVideo
-            title = "Me"
-            id = "myVideo"
-            style = "width: 300px; height: 225px;"]
-        [/kandyVideo]
+        [kandyVideo title = "Me" id = "myVideo"     style = "width: 300px; height: 225px;"]
 
     + <strong>Kandy Voice Call Button</strong>
 
@@ -69,15 +63,18 @@ Home page: http://www.kandy.io/
         [kandyVoiceButton class= "myButtonStyle" id ="my-voice-button"]
 
 
-    + Kandy Video Call
+    + Kandy Video Call(Video should be inline)
 
        [kandyVideoButton class="myButtonStyle"]
+
        [kandyVideo title="Me" id="myVideo"]
+
        [kandyVideo title="Their"  id="theirVideo"]
 
     + Kandy Presence
 
         [kandyStatus class="myStatusStype" id="myStatus"]
+
         [kandyAddressBook class="myAddressBookStyle" id="myContact"]
 
 
