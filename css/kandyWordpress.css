@@ -122,7 +122,6 @@ test pusblish
     margin-bottom: 10px;
 }
 
-
 /* KANDY CHAT STYLE */
 .kandyChat .imUsername {
     display: inline-block;
@@ -136,7 +135,6 @@ test pusblish
 
 .kandyChat .messages {
     border:1px solid black ;
-
 }
 
 .kandyChat .imMessage {
