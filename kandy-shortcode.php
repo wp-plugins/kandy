@@ -20,6 +20,8 @@ class KandyShortcode {
         //kandy chat shortcode
         add_shortcode('kandyChat', array(__CLASS__,'kandy_chat_shortcode_content'));
 
+        add_action('init', array(__CLASS__,'my_kandy_tinymce_button'));
+
     }
     static function register_my_script() {
         /*if(get_option('kandy_jquery_reload', "0")){
@@ -606,6 +608,47 @@ class KandyShortcode {
 
     }
 
+    /**
+     * Register TinyMCE Editor Button
+     * @param $buttons
+     * @return mixed
+     */
+    function register_kandy_tinymce_button( $buttons ) {
+        array_push( $buttons, "|", "kandyVideo" );
+        array_push( $buttons, "|", "kandyVoice" );
+        array_push( $buttons, "|", "kandyPresence" );
+        array_push( $buttons, "|", "kandyChat" );
+        return $buttons;
+    }
+
+    /**
+     * Add TinyMCE Plugin
+     * @param $plugin_array
+     * @return mixed
+     */
+    function add_kandy_tinymce_plugin( $plugin_array ) {
+        $plugin_array['kandyVideo'] = KANDY_PLUGIN_URL . '/js/tinymce/kandyVideo.js';
+        $plugin_array['kandyVoice'] = KANDY_PLUGIN_URL . '/js/tinymce/kandyVoice.js';
+        $plugin_array['kandyPresence'] = KANDY_PLUGIN_URL . '/js/tinymce/kandyPresence.js';
+        $plugin_array['kandyChat'] = KANDY_PLUGIN_URL . '/js/tinymce/KandyChat.js';
+        return $plugin_array;
+    }
+
+    /**
+     * Register Kandy Tiny Button
+     */
+    function my_kandy_tinymce_button() {
+
+        if ( ! current_user_can('edit_posts') && ! current_user_can('edit_pages') ) {
+            return;
+        }
+
+        if ( get_user_option('rich_editing') == 'true' ) {
+            add_filter( 'mce_external_plugins', array(__CLASS__,'add_kandy_tinymce_plugin') );
+            add_filter( 'mce_buttons', array(__CLASS__,'register_kandy_tinymce_button') );
+        }
+
+    }
 }
 
 
