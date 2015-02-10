@@ -627,9 +627,10 @@ class KandyShortcode {
      * @return mixed
      */
     function add_kandy_tinymce_plugin( $plugin_array ) {
-        $plugin_array['kandyVideo'] = KANDY_PLUGIN_URL . '/js/tinymce/kandyVideo.js';
-        $plugin_array['kandyVoice'] = KANDY_PLUGIN_URL . '/js/tinymce/kandyVoice.js';
-        $plugin_array['kandyPresence'] = KANDY_PLUGIN_URL . '/js/tinymce/kandyPresence.js';
+
+        $plugin_array['kandyVideo'] = KANDY_PLUGIN_URL . '/js/tinymce/KandyVideo.js';
+        $plugin_array['kandyVoice'] = KANDY_PLUGIN_URL . '/js/tinymce/KandyVoice.js';
+        $plugin_array['kandyPresence'] = KANDY_PLUGIN_URL . '/js/tinymce/KandyPresence.js';
         $plugin_array['kandyChat'] = KANDY_PLUGIN_URL . '/js/tinymce/KandyChat.js';
         return $plugin_array;
     }
