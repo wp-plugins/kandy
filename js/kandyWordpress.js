@@ -687,16 +687,11 @@ var moveContactToTopAndSetActive = function (user) {
 var $ = jQuery;
 $(document).ready(function () {
     //register kandy widget event
-    if ($('.kandyVideo').length
-        || $('.kandyButton').length
-        || $('.kandyAddressBook').length
-        || $('.kandyStatus').length
-        || $('.kandyChat').length) {
-        if (typeof login == 'function') {
-            setup();
-            login();
-            console.log('login....');
-        }
+
+    if (typeof login == 'function') {
+        setup();
+        login();
+        console.log('login....');
     }
 
     //only work when kandyChat exists

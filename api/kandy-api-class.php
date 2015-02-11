@@ -457,6 +457,11 @@ class KandyApi{
 
     }
 
+    /**
+     * Get Page Url
+     * @param null $additional_params
+     * @return mixed
+     */
     public static  function page_url($additional_params = NULL) {
         $params = array();
         if(!isset($additional_params['page']) && isset($_GET["page"])){
@@ -468,10 +473,53 @@ class KandyApi{
         return admin_url('admin.php?' . http_build_query($params));
     }
 
+    /**
+     * Redirect with a message
+     * @param $url
+     * @param $message
+     * @param string $type
+     */
     public static function redirect($url, $message, $type ="updated"){
 
         echo "<div class ='". $type. "'><p>" . $message. "</p></div>";
         echo "<meta http-equiv='refresh' content='0;url=$url' />";
+    }
+
+    /**
+     * Kandy Logout
+     * @param $userId
+     * @return array
+     */
+    public static function kandyLogout($userId){
+
+        $assignUser = KandyApi::getAssignUser($userId);
+
+        if($assignUser){
+            $userName = $assignUser->user_id;
+            $password = $assignUser->password;
+            $kandyApiKey = get_option('kandy_api_key', KANDY_API_KEY);
+            wp_enqueue_script("kandy_js_url");
+            wp_enqueue_script("kandy_fcs_url");
+            $output = "";
+            $output .="<script type='text/javascript' src='". KANDY_JQUERY ."'></script>";
+            $output .="<script type='text/javascript' src='". KANDY_JS_URL ."'></script>";
+            $output .="<script type='text/javascript' src='". KANDY_FCS_URL ."'></script>";
+            $output .="<script>if (window.login == undefined){window.login = function() {
+                        KandyAPI.Phone.login('" . $kandyApiKey . "', '" . $userName . "', '" . $password . "');
+                    };
+                    window.kandy_logout = function() {
+                                        KandyAPI.Phone.logout();
+                    };
+                }</script>";
+            $output .="<script type='text/javascript' src='". KANDY_PLUGIN_URL . "/js/kandyWordpress.js" ."'></script>";
+            setcookie( 'kandy_logout', '1', time() - 3600);
+            echo $output;
+        } else {
+            $result = array("success" => false, "message" => 'Can not found kandy user', 'output' => '');
+        }
+
+        return $result;
+
     }
 
 }
