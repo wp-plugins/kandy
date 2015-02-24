@@ -1,6 +1,6 @@
 === Kandy ===
 Contributors: Kodeplusdev
-Tags: Kandy
+Tags: Kandy, webrtc, audio, video, chat, streaming, video-streaming, live-streaming
 Requires at least: 3.8
 Tested up to: 4.1
 Stable tag: 1.4
@@ -84,7 +84,7 @@ Home page: http://www.kandy.io/
 
 
 
-<strong>More information:</strong> https://github.com/kodeplusdev/kandywordpress
+<strong>More information:</strong> https://github.com/kodeplusdev/kandy-wordpress
 
 == Frequently Asked Questions ==
 1. <strong>Kandy Shortcode not working:</strong> check your kandy api key, domain secret key for your application at Kandy > Settings.
