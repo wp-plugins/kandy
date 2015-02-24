@@ -14,7 +14,7 @@ define("KANDY_PLUGIN_VERSION", "1.4");
 define("KANDY_PLUGIN_PREFIX", "kandy");
 define("KANDY_PLUGIN_URL", $pluginURL . "/" . plugin_basename(dirname(__FILE__)));
 define('KANDY_PLUGIN_DIR', dirname(__FILE__));
-define('KANDY_API_BASE_URL', 'https://api.kandy.io/v1/');
+define('KANDY_API_BASE_URL', 'https://api.kandy.io/v1.1/');
 define('KANDY_JS_URL', "https://kandy-portal.s3.amazonaws.com/public/javascript/kandy/1.1.4/kandy.js");
 define('KANDY_FCS_URL', "https://kandy-portal.s3.amazonaws.com/public/javascript/fcs/3.0.0/fcs.js");
 define('KANDY_JQUERY', "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js");
