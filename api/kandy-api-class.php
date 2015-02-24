@@ -242,43 +242,51 @@ class KandyApi{
         require_once dirname(__FILE__) . '/RestClient.php';
 
         $kandyApiKey = get_option('kandy_api_key', KANDY_API_KEY);
-        $kandyDomainSecretKey = get_option(
-            'kandy_domain_secret_key',
-            KANDY_DOMAIN_SECRET_KEY
-        );
-        $params = array(
-            'key'               => $kandyApiKey,
-            'domain_api_secret' => $kandyDomainSecretKey
-        );
-
-        $fieldsString = http_build_query($params);
-        $url = KANDY_API_BASE_URL . 'domains/details' . '?'
-            . $fieldsString;
-
-        try {
-            $restClientObject = new  RestClient();
-            $response = $restClientObject->get($url)->getContent();
-        } catch (Exception $ex) {
-
-            return array(
-                'success' => false,
-                'message' => $ex->getMessage()
+        $getTokenResponse = self::getDomainAccessToken();
+        if ($getTokenResponse['success']) {
+            $domainAccessToken = $getTokenResponse['data'];
+            $params = array(
+                'key'               => $domainAccessToken,
+                'domain_api_key' => $kandyApiKey
             );
-        }
 
-        $response = json_decode($response);
-        if ($response->message == 'success') {
-            update_option("kandy_domain_name",  $response->result->domain->domain_name);
-            return array(
-                'success' => true,
-                'data'    => $response->result->domain->domain_name,
-            );
+            $fieldsString = http_build_query($params);
+            $url = KANDY_API_BASE_URL . 'accounts/domains/details' . '?'
+                . $fieldsString;
+
+            try {
+                $restClientObject = new  RestClient();
+                $response = $restClientObject->get($url)->getContent();
+            } catch (Exception $ex) {
+
+                return array(
+                    'success' => false,
+                    'message' => $ex->getMessage()
+                );
+            }
+
+            $response = json_decode($response);
+            if ($response->message == 'success') {
+                update_option("kandy_domain_name",  $response->result->domain->domain_name);
+                return array(
+                    'success' => true,
+                    'data'    => $response->result->domain->domain_name,
+                );
+            } else {
+                return array(
+                    'success' => false,
+                    'message' => $response->message
+                );
+            }
         } else {
             return array(
                 'success' => false,
-                'message' => $response->message
+                'message' => 'Invalid Domain Request'
             );
         }
+
+
+
     }
     /**
      * Get all users from Kandy and import/update to kandy_user
