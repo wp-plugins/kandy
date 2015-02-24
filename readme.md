@@ -290,5 +290,5 @@ $result = array(
 ```
 
 ### Troubleshooting
-- **Kandy Shortcode not working:** check your kandy api key, domain secret key for your application at **Kandy > Settings**
+- **Kandy Shortcode not working:** check your kandy api key, domain secret key for your application at **Kandy > Settings**.
 - **Internationalizing**: get the /languages/kandy.pot file and make your /languages/*.mo file to locale your language.
