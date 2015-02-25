@@ -6,10 +6,10 @@ Home page: http://www.kandy.io/
 Kandy Wordpress Plugin help you use kandy in your website easily by following steps: 
 
   - Install Kandy plugin and active it
-  - Goto Kandy > Settings to configure all required options.
-  - Go Kandy > User Assignment to assign kandy users to your users. If you need refesh kandy users list please click sync.
-  - Go Kandy > Customization to edit some script and style for your kandy components.
-  - Go Pages > Add New to create a new page with kandy components by kandy shortcode.
+  - Go **Kandy > Settings** to configure all required options.
+  - Go **Kandy > User Assignment** to assign kandy users to your users. If you need refesh kandy users list please click sync.
+  - Go **Kandy > Customization** to edit some script and style for your kandy components.
+  - Go **Pages > Add New** to create a new page with kandy components by kandy shortcode.
 
 ####Kandy components and shortcode syntax:
 
@@ -57,7 +57,7 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
         id = "myStatus"
         title = "My Status"]
   ```
-**Kandy Adress Book**: make an address book component which list all friend in your contact.
+**Kandy Address Book**: make an address book component which list all friend in your contact.
 ```sh
 [kandyAddressBook
         class = "myAddressBookStyle"
@@ -91,18 +91,18 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
 *Note*: 
 Two **kandyVideo** object should be inline because some editor will insert a break line automatically.
 
-**Kandy Presence**: use a kandystatus and kandy addressbook compobent
+**Kandy Presence**: use a kandyStatus and kandy addressBook compobent
 ```sh
 [kandyStatus class="myStatusStyle" id="myStatus"]
 [kandyAddressBook class="myAddressBookStyle" id="myContact"]
 ```
 
-**Kandy Chat: **
+**Kandy Chat**:
 ```sh
 [kandyChat class="myChatStyle" id ="my-chat"]
 ```
 ####Kandy Administration:
-**Settings: ** 
+**Settings**:
 
 - **API Key:** Kandy API key which found in your kandy account.
 - **Domain Secret Key:** Domain Kandy API key which found in your kandy account.
@@ -118,47 +118,47 @@ Two **kandyVideo** object should be inline because some editor will insert a bre
 
 ***All support script callback:***
 ```sh
-window.loginsuccess_callback = function () {
+window.login_success_callback = function () {
    //do something when you login successfully
 }
-window.loginfailed_callback = function () {
+window.login_failed_callback = function () {
     //do something when you login fail
 }
-window.callincoming_callback = function (call, isAnonymous) {
+window.call_incoming_callback = function (call, isAnonymous) {
     //do something when your are calling
 }
-window.oncall_callback = function (call) {
+window.on_call_callback = function (call) {
     //do something when you are oncall
 }
-window.callanswered_callback = function (call, isAnonymous) {
+window.call_answered_callback = function (call, isAnonymous) {
     //do something when someone answer your call
 }
-window.callended_callback = function () {
+window.call_ended_callback = function () {
    //do something when someone end  your call
 }
 
-window.answerVoiceCall_callback = function (stage) {
+window.answer_voice_call_callback = function (stage) {
     //do something when you answer voice call
 }
 
-window.answerVideoCall_callback = function (stage) {
+window.answer_video_call_callback = function (stage) {
     //do something when you answer video call
 }
-window.makeCall_callback = function (stage) {
+window.make_call_callback = function (stage) {
    //do something when you make call
 }
-window.endCall_callback = function (stage) {
+window.end_call_callback = function (stage) {
    //do something when you click end call button
 }
-window.remotevideoinitialized_callack(videoTag){
+window.remote_video_initialized_callback(videoTag){
    //do something with your remote video
 }
 
-window.localvideoinitialized_callback = function(videoTag){
+window.local_video_initialized_callback = function(videoTag){
     //do some thing with your local video
 }
 
-window.presencenotification_callack = function() {
+window.presence_notification_callback = function() {
     //do something with status notification
 }
 ```
@@ -170,7 +170,7 @@ You can use kandy plugin anywhere in your code by following code:
 ```sh
 require_once(KANDY_PLUGIN_DIR . "/api/kandy-api-class.php");
 ```
-After load kandy plugin succucessfully you can use all support api:
+After load kandy plugin successfully you can use all support api:
 
 **1. Get kandy user data for assignment table**
 ```sh
@@ -254,7 +254,7 @@ KandyApi::assignUser($kandyUserId, $mainUserId);
 Parameters:
 ```sh
 $kandyUserId(string) : kandy user id without domain(user1, user2....)
-$mainuserId(int): normal user id(1, 2, 3....)
+$mainUserId(int): normal user id(1, 2, 3....)
 ```
 Return: true/false
 
@@ -264,7 +264,7 @@ KandyApi::unassignUser($mainUserId);
 ```
 Parameters:
 ```sh
-$mainuserId(int): normal user id(1, 2, 3....)
+$mainUserId(int): normal user id(1, 2, 3....)
 ```
 Return: true/false
 
@@ -290,5 +290,5 @@ $result = array(
 ```
 
 ### Troubleshooting
-- **Kandy Shortcode not working:** check your kandy api key, domain secret key for your application at **Kandy > Settings**.
+- **Kandy ShortCode not working:** check your kandy api key, domain secret key for your application at **Kandy > Settings**.
 - **Internationalizing**: get the /languages/kandy.pot file and make your /languages/*.mo file to locale your language.

@@ -5,7 +5,6 @@ class RestClientException extends Exception
 
 class RestClient
 {
-
     protected $_submitted = false;
     protected $_headers = array();
     protected $_body = '';

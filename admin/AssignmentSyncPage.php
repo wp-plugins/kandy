@@ -42,5 +42,3 @@ class KandyAssignmentSyncPage extends KandyPage
         }
     }
 }
-
-?>

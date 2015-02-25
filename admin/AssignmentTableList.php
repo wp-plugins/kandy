@@ -1,13 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 13/01/2015
- * Time: 13:44
- */
-/*
-Plugin Name: Test List Table Example
-*/
 
 if (!class_exists('WP_List_Table')) {
     require_once(ABSPATH . 'wp-admin/includes/class-wp-list-table.php');
@@ -76,7 +67,6 @@ class AssignTableList extends WP_List_Table
         $sortable = $this->get_sortable_columns();
         $this->_column_headers = array($columns, $hidden, $sortable);
 
-
         //pagination
         $per_page = 5;
         $current_page = $this->get_pagenum();
@@ -122,5 +112,4 @@ class AssignTableList extends WP_List_Table
         // Send final sort direction to usort
         return ($order === 'asc') ? $result : -$result;
     }
-
 }

@@ -3,21 +3,21 @@
 class KandyShortcode {
 
     static function init() {
-        //register script
+        // Register script.
         add_action('wp_enqueue_scripts', array(__CLASS__,'register_my_script' ));
 
-        //kandy video shortcode
+        // Kandy video shortCode.
         add_shortcode('kandyVideoButton', array(__CLASS__,'kandy_video_button_shortcode_content'));
         add_shortcode('kandyVideo', array(__CLASS__,'kandy_video_shortcode_content'));
 
-        //kandy voice shortcode
+        // Kandy voice shortCode.
         add_shortcode('kandyVoiceButton', array(__CLASS__,'kandy_voice_shortcode_content'));
 
-        //kandy addressbook shortcode
+        // Kandy addressBook shortCode.
         add_shortcode('kandyStatus', array(__CLASS__,'kandy_status_shortcode_content'));
-        add_shortcode('kandyAddressBook', array(__CLASS__,'kandy_addressbook_shortcode_content'));
+        add_shortcode('kandyAddressBook', array(__CLASS__,'kandy_addressBook_shortcode_content'));
 
-        //kandy chat shortcode
+        // Kandy chat shortCode.
         add_shortcode('kandyChat', array(__CLASS__,'kandy_chat_shortcode_content'));
 
         add_action('init', array(__CLASS__,'my_kandy_tinymce_button'));
@@ -130,40 +130,40 @@ class KandyShortcode {
 
     /**
      * Kandy Video Content
-     * @param $attrs
+     * @param $attr
      * @return null|string
      */
-    function kandy_video_shortcode_content($attrs) {
+    function kandy_video_shortcode_content($attr) {
         $output = "";
-        if(!empty($attrs)){
+        if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
                 // init title attribute
-                if(isset($attrs['title'])){
-                    $title = $attrs['title'];
+                if(isset($attr['title'])){
+                    $title = $attr['title'];
                 } else {
                     $title = 'Kandy Video';
                 }
 
                 //init class attribute
                 $class = 'kandyVideo ';
-                if(isset($attrs['class'])){
-                    $class .= $attrs['class'] ;
+                if(isset($attr['class'])){
+                    $class .= $attr['class'] ;
                 }
 
                 //init id attribute
                 $id = 'kandy-video-'. rand() . ' ';
-                if(isset($attrs['id'])){
-                    $id = $attrs['id'] ;
+                if(isset($attr['id'])){
+                    $id = $attr['id'] ;
                 }
 
                 //init htmlOptions
                 $htmlOptionsAttributes = '';
-                /*if (!isset($attrs['style'])) {
+                /*if (!isset($attr['style'])) {
                     $htmlOptionsAttributes = "style = 'width: 300px; height: 225px;background-color: darkslategray;'";
                 }*/
 
-                foreach ($attrs as $key => $value) {
+                foreach ($attr as $key => $value) {
                     if ($key != "id" && $key != "class" && $key != "title") {
                         $htmlOptionsAttributes .= $key . "= '" . $value . "'";
                     }
@@ -187,11 +187,12 @@ class KandyShortcode {
 
     /**
      * Kandy Video Button Content
-     * @param $attrs
+     * @param $attr
      * @return null|string
      */
-    function kandy_video_button_shortcode_content($attrs) {
-        if(!empty($attrs)){
+    function kandy_video_button_shortcode_content($attr) {
+        $output = "";
+        if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
 
@@ -200,14 +201,14 @@ class KandyShortcode {
 
                 //init class attribute
                 $class = 'kandyButton ';
-                if(isset($attrs['class'])){
-                    $class .= $attrs['class'] ;
+                if(isset($attr['class'])){
+                    $class .= $attr['class'] ;
                 }
 
                 //init id attribute
                 $id = 'kandy-video-button'. rand() . ' ';
-                if(isset($attrs['id'])){
-                    $id = $attrs['id'] ;
+                if(isset($attr['id'])){
+                    $id = $attr['id'] ;
                 }
 
                 $output = '<div class="'. $class .'" id ="' . $id .'">' .
@@ -219,16 +220,16 @@ class KandyShortcode {
                     '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">'.
                     '<label>User to call</label>'.
                     '<input id="callOutUserId" type="text" value=""/>'.
-                    '<input class="btnCall" id="callBtn" type="button" value="Call" onclick="kandy_makeVideoCall(this)"/>'.
+                    '<input class="btnCall" id="callBtn" type="button" value="Call" onclick="kandy_make_video_call(this)"/>'.
                     '</div>'.
 
                     '<div class="kandyButtonComponent kandyVideoButtonCalling" id="calling">' .
                     '<label>Calling...</label>' .
-                    '<input type="button" class="btnEndCall" value="End Call" onclick="kandy_endCall(this)"/>' .
+                    '<input type="button" class="btnEndCall" value="End Call" onclick="kandy_end_call(this)"/>' .
                     '</div>'.
                     '<div class="kandyButtonComponent kandyVideoButtonOnCall" id="onCall">' .
                     '<label>You are connected!</label>' .
-                    '<input class="btnEndCall" type="button" value="End Call" onclick="kandy_endCall(this)"/>'.
+                    '<input class="btnEndCall" type="button" value="End Call" onclick="kandy_end_call(this)"/>'.
                     '</div>'.
                     '</div>';
 
@@ -239,81 +240,80 @@ class KandyShortcode {
             } else {
                 $output = '<p>' . __('Can not setup kandy video button...') . '<p>';
             }
-            return $output;
         }
-
+        return $output;
     }
 
     /**
      * Kandy Voice Button Content
-     * @param $attrs
+     * @param $attr
      * @return null|string
      */
-    function kandy_voice_shortcode_content($attrs) {
-
-        if(!empty($attrs)){
+    function kandy_voice_shortcode_content($attr) {
+        $output = "";
+        if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
                 wp_enqueue_script("kandy_voice_js");
                 wp_enqueue_style("kandy_voice_css");
                 //init class attribute
                 $class = 'kandyButton ';
-                if(isset($attrs['class'])){
-                    $class .= $attrs['class'] ;
+                if(isset($attr['class'])){
+                    $class .= $attr['class'] ;
                 }
 
                 //init id attribute
                 $id = 'kandy-voice-button'. rand() . ' ';
-                if(isset($attrs['id'])){
-                    $id = $attrs['id'] ;
+                if(isset($attr['id'])){
+                    $id = $attr['id'] ;
                 }
 
                 //init incomingLabel attribute
                 $incomingLabel = 'Incoming Call...';
-                if(isset($attrs['incomingLabel'])){
-                    $incomingLabel = $attrs['incomingLabel'] ;
+                if(isset($attr['incomingLabel'])){
+                    $incomingLabel = $attr['incomingLabel'] ;
                 }
 
                 //init incomingLabel attribute
                 $incomingButtonText = 'Answer';
-                if(isset($attrs['incomingButtonText'])){
-                    $incomingButtonText = $attrs['incomingButtonText'] ;
+                if(isset($attr['incomingButtonText'])){
+                    $incomingButtonText = $attr['incomingButtonText'] ;
                 }
 
                 //init callOutLabel attribute
                 $callOutLabel = 'User to call';
-                if(isset($attrs['callOutLabel'])){
-                    $callOutLabel = $attrs['callOutLabel'] ;
+                if(isset($attr['callOutLabel'])){
+                    $callOutLabel = $attr['callOutLabel'] ;
                 }
 
                 //init callOutButtonText attribute
                 $callOutButtonText = 'Call';
-                if(isset($attrs['callOutButtonText'])){
-                    $callOutButtonText = $attrs['callOutButtonText'] ;
+                if(isset($attr['callOutButtonText'])){
+                    $callOutButtonText = $attr['callOutButtonText'] ;
                 }
 
                 //init callOutLabel attribute
                 $callingLabel = 'Calling...';
-                if(isset($attrs['callingLabel'])){
-                    $callingLabel = $attrs['callingLabel'] ;
+                if(isset($attr['callingLabel'])){
+                    $callingLabel = $attr['callingLabel'] ;
                 }
 
                 //init callOutButtonText attribute
                 $callingButtonText = 'End Call';
-                if(isset($attrs['callingButtonText'])){
-                    $callingButtonText = $attrs['callingButtonText'] ;
+                if(isset($attr['callingButtonText'])){
+                    $callingButtonText = $attr['callingButtonText'] ;
                 }
 
                 //init callOutLabel attribute
                 $onCallLabel = 'You are connected!';
-                if(isset($attrs['onCallLabel'])){
-                    $onCallLabel = $attrs['onCallLabel'] ;
+                if(isset($attr['onCallLabel'])){
+                    $onCallLabel = $attr['onCallLabel'] ;
                 }
 
                 //init callOutButtonText attribute
                 $onCallButtonText = 'End Call';
-                if(isset($attrs['onCallButtonText'])){
-                    $onCallButtonText = $attrs['onCallButtonText'] ;
+                if(isset($attr['onCallButtonText'])){
+                    $onCallButtonText = $attr['onCallButtonText'] ;
                 }
 
                 $output = '<div class="'. $class .'" id ="'. $id .'">' .
@@ -325,16 +325,16 @@ class KandyShortcode {
                     '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">'.
                     '<label>'. $callOutLabel .'</label>'.
                     '<input id="callOutUserId" type="text" value=""/>'.
-                    '<input class="btnCall" id="callBtn" type="button" value="'. $callOutButtonText .'" onclick="kandy_makeVoiceCall(this)"/>'.
+                    '<input class="btnCall" id="callBtn" type="button" value="'. $callOutButtonText .'" onclick="kandy_make_voice_call(this)"/>'.
                     '</div>'.
 
                     '<div class="kandyButtonComponent kandyVideoButtonCalling" id="calling">' .
                     '<label>'. $callingLabel .'</label>' .
-                    '<input type="button" class="btnEndCall" value="'. $callingButtonText .'" onclick="kandy_endCall(this)"/>' .
+                    '<input type="button" class="btnEndCall" value="'. $callingButtonText .'" onclick="kandy_end_call(this)"/>' .
                     '</div>'.
                     '<div class="kandyButtonComponent kandyVideoButtonOnCall" id="onCall">' .
                     '<label>'. $onCallLabel .'</label>' .
-                    '<input class="btnEndCall" type="button" value=" '. $onCallButtonText .' " onclick="kandy_endCall(this)"/>'.
+                    '<input class="btnEndCall" type="button" value=" '. $onCallButtonText .' " onclick="kandy_end_call(this)"/>'.
                     '</div>'.
                     '<div class="videoVoiceCallHolder">
                         <span class="video"></span>
@@ -346,45 +346,44 @@ class KandyShortcode {
             } else {
                 $output = '<p>' . __('Can not setup kandy voice button...') . '<p>';
             }
-            return $output;
         }
-
+        return $output;
     }
 
     /**
      * Kandy Status shortcode content
-     * @param $attrs
+     * @param $attr
      * @return string
      */
-    function kandy_status_shortcode_content($attrs) {
-
-        if(!empty($attrs)){
+    function kandy_status_shortcode_content($attr) {
+        $output = "";
+        if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
 
                 // init title attribute
-                if(isset($attrs['title'])){
-                    $title = $attrs['title'];
+                if(isset($attr['title'])){
+                    $title = $attr['title'];
                 } else {
                     $title = 'My Status';
                 }
                 //init class attribute
                 $class = 'kandyStatus ';
-                if(isset($attrs['class'])){
-                    $class .= $attrs['class'] ;
+                if(isset($attr['class'])){
+                    $class .= $attr['class'] ;
                 }
 
                 //init id attribute
                 $id = 'kandy-status'. rand() . ' ';
-                if(isset($attrs['id'])){
-                    $id = $attrs['id'] ;
+                if(isset($attr['id'])){
+                    $id = $attr['id'] ;
                 }
 
                 //init htmlOptions attribute
                 $htmlOptionsAttributes = '';
 
 
-                foreach ($attrs as $key => $value) {
+                foreach ($attr as $key => $value) {
                     if ($key != "id" && $key != "class" && $key != "title") {
                         $htmlOptionsAttributes .= $key . "= '" . $value . "'";
                     }
@@ -406,64 +405,63 @@ class KandyShortcode {
             } else {
                 $output = '<p>' . __('Can not setup kandy status...') . '<p>';
             }
-            return $output;
         }
-
+        return $output;
     }
 
     /**
      * Kandy Presence
-     * @param $attrs
+     * @param $attr
      * @return null|string
      */
-    function kandy_addressbook_shortcode_content($attrs) {
-
-        if(!empty($attrs)){
+    function kandy_addressBook_shortcode_content($attr) {
+        $output = "";
+        if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
                 wp_enqueue_script("kandy_addressbook_js");
                 wp_enqueue_style("kandy_addressbook_css");
 
                 // init title attribute
-                if(isset($attrs['title'])){
-                    $title = $attrs['title'];
+                if(isset($attr['title'])){
+                    $title = $attr['title'];
                 } else {
                     $title = 'My Contact';
                 }
                 //init class attribute
                 $class = 'kandyAddressBook ';
-                if(isset($attrs['class'])){
-                    $class .= $attrs['class'] ;
+                if(isset($attr['class'])){
+                    $class .= $attr['class'] ;
                 }
 
                 //init id attribute
                 $id = 'kandy-address-book'. rand() . ' ';
-                if(isset($attrs['id'])){
-                    $id = $attrs['id'] ;
+                if(isset($attr['id'])){
+                    $id = $attr['id'] ;
                 }
 
                 //init id attribute
                 $userLabel = 'User';
-                if(isset($attrs['userLabel'])){
-                    $userLabel = $attrs['userLabel'] ;
+                if(isset($attr['userLabel'])){
+                    $userLabel = $attr['userLabel'] ;
                 }
 
                 //init id attribute
                 $searchLabel = 'Search';
-                if(isset($attrs['searchLabel'])){
-                    $searchLabel = $attrs['searchLabel'] ;
+                if(isset($attr['searchLabel'])){
+                    $searchLabel = $attr['searchLabel'] ;
                 }
 
                 //init id attribute
                 $searchResultLabel = 'Directory Search Results';
-                if(isset($attrs['searchResultLabel'])){
-                    $searchResultLabel = $attrs['searchResultLabel'] ;
+                if(isset($attr['searchResultLabel'])){
+                    $searchResultLabel = $attr['searchResultLabel'] ;
                 }
 
                 //init htmlOptions attribute
                 $htmlOptionsAttributes = '';
 
-                foreach ($attrs as $key => $value) {
+                foreach ($attr as $key => $value) {
                     if ($key != "id" && $key != "class" && $key != "title") {
                         $htmlOptionsAttributes .= $key . "= '" . $value . "'";
                     }
@@ -488,45 +486,44 @@ class KandyShortcode {
             } else {
                 $output = '<p>' . __('Can not setup kandy address book...') . '<p>';
             }
-            return $output;
         }
-
+        return $output;
     }
 
     /**
      * Kandy Chat Content
-     * @param $attrs
+     * @param $attr
      * @return null|string
      */
-    function kandy_chat_shortcode_content($attrs) {
-
-        if(!empty($attrs)){
+    function kandy_chat_shortcode_content($attr) {
+        $output = "";
+        if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
                 wp_enqueue_script("kandy_chat_js");
                 wp_enqueue_style("kandy_chat_css");
                 //init class attribute
                 $class = 'kandyChat ';
-                if(isset($attrs['class'])){
-                    $class .= $attrs['class'] ;
+                if(isset($attr['class'])){
+                    $class .= $attr['class'] ;
                 }
 
                 //init id attribute
                 $id = 'kandy-chat'. rand() . ' ';
-                if(isset($attrs['id'])){
-                    $id = $attrs['id'] ;
+                if(isset($attr['id'])){
+                    $id = $attr['id'] ;
                 }
 
                 //init contacts label attribute
                 $contactLabel = 'Contacts';
-                if(isset($attrs['contactLabel'])){
-                    $contactLabel = $attrs['contactLabel'] ;
+                if(isset($attr['contactLabel'])){
+                    $contactLabel = $attr['contactLabel'] ;
                 }
 
                 //init htmlOptions attribute
                 $htmlOptionsAttributes = '';
 
-                foreach ($attrs as $key => $value) {
+                foreach ($attr as $key => $value) {
                     if ($key != "id" && $key != "class" && $key != "title") {
                         $htmlOptionsAttributes .= $key . "= '" . $value . "'";
                     }
@@ -572,9 +569,8 @@ class KandyShortcode {
             } else {
                 $output = '<p>' . __('Can not setup kandy video...') . '<p>';
             }
-            return $output;
         }
-
+        return $output;
     }
 
     /**
@@ -654,6 +650,10 @@ class KandyShortcode {
         }
 
     }
+
+    /**
+     * Kandy Logout
+     */
     function my_kandy_logout(){
         $current_user = wp_get_current_user();
         if($current_user) {
@@ -661,7 +661,3 @@ class KandyShortcode {
         }
     }
 }
-
-
-
-

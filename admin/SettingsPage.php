@@ -141,5 +141,4 @@ class KandySettingsPage extends KandyPage
         $this->render_page_end();
     }
 }
-
 ?>

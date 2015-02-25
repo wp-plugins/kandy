@@ -6,8 +6,14 @@ define('KANDY_USER_UNASSIGNED', 3);
 
 class KandyApi{
     /**
-     * Get Kandy User Data for assignment table
+     * Get Kandy User Data for assignment table.
+     *
+     * @param int $limit
+     *   Limit User
+     * @param int $offset
+     *   Offset
      * @return array
+     *   Array User Object
      */
 
     public static function getUserData($limit = 10, $offset = 0)
@@ -155,7 +161,7 @@ class KandyApi{
                             $result = $wpdb->get_results(
                                 "SELECT *
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE main_user_id IS NULL
+                             WHERE main_user_id = ''
                              AND domain_name = '". $domainName ."'");
                         }
                     }
@@ -222,11 +228,15 @@ class KandyApi{
         }
         return $result;
     }
+
     /**
-     * Get the domain from domain key in the configuration
+     * Get the domain from domain key in the configuration.
      *
-     * @return array A list of message the data
-     * @throws RestClientException
+     * @param bool $sync
+     *   Force to sync(true).
+     *
+     * @return array
+     *   Domain name result.
      */
     public static function getDomain($sync = false)
     {
@@ -337,11 +347,11 @@ class KandyApi{
                         // insert
                         $format[] = '%s';
                         $dataValues['created_at'] = date("Y-m-d H:i:s");
-                        $rowEffect = $wpdb->insert($wpdb->prefix. "kandy_users", $dataValues, $format);
+                        $wpdb->insert($wpdb->prefix. "kandy_users", $dataValues, $format);
 
                     } else {
                         //update
-                        $rowEffect = $wpdb->update(
+                        $wpdb->update(
                             $wpdb->prefix . "kandy_users",
                             $dataValues,
                             array('user_id' => $kandyUser->user_id,
@@ -359,7 +369,7 @@ class KandyApi{
                         $inArrayStr .= "'" . $receivedUser ."',";
                     }
                     $inArrayStr = trim($inArrayStr, ",");
-                    $rowEffect = $wpdb->query( "DELETE FROM {$wpdb->prefix}kandy_users
+                    $wpdb->query( "DELETE FROM {$wpdb->prefix}kandy_users
                                    WHERE domain_name = '" . $domainName . "'
                                    AND user_id NOT IN (" . $inArrayStr . ")" );
                 }
@@ -401,17 +411,16 @@ class KandyApi{
             if ($getDomainNameResponse['success'] == true) {
                 $domainName = $getDomainNameResponse['data'];
 
-                $num_updated = $wpdb->update(
+                $wpdb->update(
                     $wpdb->prefix . 'kandy_users',
-                    array('main_user_id' => null),
+                    array('main_user_id' => NULL),
                     array(
                         'main_user_id' => $mainUserId,
                         'domain_name'  => $domainName
-                    ),
-                    array('null')
+                    )
                 );
 
-                $num_updated = $wpdb->update(
+                $wpdb->update(
                     $wpdb->prefix . 'kandy_users',
                     array('main_user_id' => $mainUserId),
                     array(
@@ -445,7 +454,7 @@ class KandyApi{
             if ($getDomainNameResponse['success'] == true) {
                 $domainName = $getDomainNameResponse['data'];
 
-                $num_updated = $wpdb->update(
+                $wpdb->update(
                     $wpdb->prefix . 'kandy_users',
                     array('main_user_id' => NULL),
                     array(
@@ -499,7 +508,7 @@ class KandyApi{
      * @return array
      */
     public static function kandyLogout($userId){
-
+        $result = array();
         $assignUser = KandyApi::getAssignUser($userId);
 
         if($assignUser){
@@ -527,11 +536,5 @@ class KandyApi{
         }
 
         return $result;
-
     }
-
 }
-
-
-
-
