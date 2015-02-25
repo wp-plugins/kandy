@@ -6,7 +6,6 @@ class KandyAssignmentPage extends KandyPage
 {
     public function render()
     {
-
         $this->render_page_start("Kandy");
         ?>
 
@@ -20,9 +19,6 @@ class KandyAssignmentPage extends KandyPage
         $assignmentTableList->display();
         $this->render_page_end();
 
-
-
     }
 }
-
 ?>

@@ -30,7 +30,7 @@ Home page: http://www.kandy.io/
 
     + <strong>Kandy Video Call Button</strong>
 
-        [kandyVideoButton class = "myButtonStype" id = "my-video-button"]
+        [kandyVideoButton class = "myButtonStyle" id = "my-video-button"]
 
     + <strong>Kandy Video</strong>
 
@@ -73,7 +73,7 @@ Home page: http://www.kandy.io/
 
     + Kandy Presence
 
-        [kandyStatus class="myStatusStype" id="myStatus"]
+        [kandyStatus class="myStatusStyle" id="myStatus"]
 
         [kandyAddressBook class="myAddressBookStyle" id="myContact"]
 
@@ -96,7 +96,7 @@ Home page: http://www.kandy.io/
 2. Kandy Settings
 3. Kandy User Assignment
 4. Kandy edit kandy user assignment
-5. Kandy Cutomization
+5. Kandy Customization
 6. Kandy edit css file
 7. Kandy Help
 

@@ -1,15 +1,15 @@
 <?php
 /**
  * Plugin Name: kandy
- * Plugin URI: https://github.com/kodeplusdev/kandywordpress
+ * Plugin URI: https://github.com/kodeplusdev/kandy-wordpress
  * Description: Kandy for wordpress.
  * Version: 1.4
  * Text Domain: kandy
- * Author: kodeplusdev
+ * Author: KodePlus
  * Author URI: https://github.com/kodeplusdev
  * License: GPL2
  */
-$pluginURL = $isHttps ? str_replace("http://", "https://", WP_PLUGIN_URL) : WP_PLUGIN_URL;
+$pluginURL = is_ssl() ? str_replace("http://", "https://", WP_PLUGIN_URL) : WP_PLUGIN_URL;
 define("KANDY_PLUGIN_VERSION", "1.4");
 define("KANDY_PLUGIN_PREFIX", "kandy");
 define("KANDY_PLUGIN_URL", $pluginURL . "/" . plugin_basename(dirname(__FILE__)));

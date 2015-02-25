@@ -18,7 +18,7 @@
 <p>
     &nbsp; &nbsp; + Install and enable&nbsp;<strong>shortcode </strong>module https://www.drupal.org/project/shortcode<br />
     &nbsp; &nbsp; + Enable shortcode filter at <em><strong>Configuration &gt; Content Authoring &gt; Text Formats</strong></em><br />
-    &nbsp; &nbsp; + Uncheck auto &quot;<em><strong>Convert line breaks into HTML</strong></em>&quot; . A good point when you&nbsp;&nbsp;add new text format <em style="line-height: 20.7999992370605px;"><strong>Configuration &gt; Content Authoring &gt; Text Formats &gt; Add text format </strong>(kandy)</em><br />
+    &nbsp; &nbsp; + Uncheck auto &quot;<em><strong>Convert line breaks into HTML</strong></em>&quot; . A good point when you&nbsp;&nbsp;add new text format <em style="line-height: 20px;"><strong>Configuration &gt; Content Authoring &gt; Text Formats &gt; Add text format </strong>(kandy)</em><br />
     &nbsp; &nbsp; + Configure kandy options at <strong><em>Configuration &gt; Content Authoring &gt; kandy</em></strong>
 </p>
 
@@ -38,7 +38,7 @@
 <p>
     &nbsp; &nbsp; <strong>+ Kandy Video Call Button</strong><br />
     &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#696969;">[kandyVideoButton<br />
-	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; class = &quot;myButtonStype&quot;<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; class = &quot;myButtonStyle&quot;<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; id = &quot;my-video-button&quot;<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; incomingLabel = &#39;Incoming Call...&#39;<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; incomingButtonText = &#39;Answer&#39;<br />
@@ -54,7 +54,7 @@
 <p>
     &nbsp; &nbsp; <strong>+ Kandy Voice Call Button</strong><br />
     &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#696969;">[kandyVoiceButton<br />
-	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; class = &quot;myButtonStype&quot;<br />
+	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; class = &quot;myButtonStyle&quot;<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; id = &quot;my-voice-button&quot;<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; incomingLabel = &#39;Incoming Call...&#39;<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; incomingButtonText = &#39;Answer&#39;<br />
@@ -128,7 +128,7 @@
 
 <p>
     <strong>&nbsp; &nbsp; + Kandy Video Call</strong><br />
-    &nbsp; &nbsp; &nbsp; &nbsp;<span style="color:#696969;">[kandyVideoButton class="myButtonStype"][/kandyVideoButton]<br />
+    &nbsp; &nbsp; &nbsp; &nbsp;<span style="color:#696969;">[kandyVideoButton class="myButtonStyle"][/kandyVideoButton]<br />
 	&nbsp; &nbsp; &nbsp; &nbsp;[kandyVideo title="Me" id="myVideo" style = "width: 300px; height: 225px;background-color: darkslategray;"] [/kandyVideo]<br />
 	&nbsp; &nbsp; &nbsp; &nbsp;[kandyVideo title="Their" &nbsp;id="theirVideo" style = "width: 300px; height: 225px;background-color: darkslategray;"][/kandyVideo]</span>
 </p>
@@ -139,7 +139,7 @@
 
 <p>
     <strong>&nbsp; &nbsp; + Kandy Presence</strong><br />
-    &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#696969;">[kandyStatus class="myStatusStype" id="myStatus"][/kandyStatus]<br />
+    &nbsp; &nbsp; &nbsp; &nbsp; <span style="color:#696969;">[kandyStatus class="myStatusStyle" id="myStatus"][/kandyStatus]<br />
 	&nbsp; &nbsp; &nbsp; &nbsp; [kandyAddressBook class="myAddressBookStyle" id="myContact"][/kandyAddressBook]</span>
 </p>
 
@@ -165,19 +165,19 @@
         Select proper text format which enable shortcode filter to show all shortcodes correctly.
     </li>
     <li>
-        <font face="Lucida Grande, Lucida Sans Unicode, sans-serif"><span style="font-size: 12px; line-height: 20.0063037872314px;">Check provide menu link to make your content as a menu.</span></font>
+        <font face="Lucida Grande, Lucida Sans Unicode, sans-serif"><span style="font-size: 12px; line-height: 20px;">Check provide menu link to make your content as a menu.</span></font>
     </li>
     <li>
-        <font face="Lucida Grande, Lucida Sans Unicode, sans-serif"><span style="font-size: 12px; line-height: 20.0063037872314px;">Uncheck promoted to front end</span></font>
+        <font face="Lucida Grande, Lucida Sans Unicode, sans-serif"><span style="font-size: 12px; line-height: 20px;">Uncheck promoted to front end</span></font>
     </li>
     <li>
-        <font face="Lucida Grande, Lucida Sans Unicode, sans-serif"><span style="font-size: 12px; line-height: 20.0063037872314px;">Uncheck&nbsp;</span></font><span style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 12px; line-height: 20.0063037872314px;">Display author and date information.</span>
+        <font face="Lucida Grande, Lucida Sans Unicode, sans-serif"><span style="font-size: 12px; line-height: 20px;">Uncheck&nbsp;</span></font><span style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 12px; line-height: 20px;">Display author and date information.</span>
     </li>
     <li>
-        <span style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 12px; line-height: 20.0063037872314px;">Close comment settings</span>
+        <span style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 12px; line-height: 20px;">Close comment settings</span>
     </li>
     <li>
-        <span style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 12px; line-height: 20.0063037872314px;">Shortcode only work with inline format</span>
+        <span style="font-family: 'Lucida Grande', 'Lucida Sans Unicode', sans-serif; font-size: 12px; line-height: 20px;">Shortcode only work with inline format</span>
     </li>
 </ul>
 
@@ -227,7 +227,7 @@
     <strong>+ Script customization</strong>
 </p>
 
-<ol style="line-height: 20.7999992370605px; margin-left: 40px;">
+<ol style="line-height: 20px; margin-left: 40px;">
     <li>
         Click <em><strong>KANDY SCRIPT CUSTOMIZATION</strong></em> to edit kandy shortcode(video, voice, chat...) script
     </li>
@@ -241,55 +241,55 @@
 
 <div>
     <p style="margin-left: 80px;">
-		<span style="color:#696969;">window.loginsuccess_callback = function () {<br />
-		&nbsp; &nbsp;<span style="line-height: 20.7999992370605px;">//do something when you login successfully</span><br />
+		<span style="color:#696969;">window.login_success_callback = function () {<br />
+		&nbsp; &nbsp;<span style="line-height: 20px;">//do something when you login successfully</span><br />
 		}<br />
-		window.loginfailed_callback = function () {<br />
-		&nbsp; &nbsp; <span style="line-height: 20.7999992370605px;">//do something when you login fail</span><br />
+		window.login_failed_callback = function () {<br />
+		&nbsp; &nbsp; <span style="line-height: 20px;">//do something when you login fail</span><br />
 		}<br />
-		window.callincoming_callback = function (call, isAnonymous) {<br />
-		&nbsp; &nbsp; <span style="line-height: 20.7999992370605px;">//do something when your are&nbsp;calling</span><br />
+		window.call_incoming_callback = function (call, isAnonymous) {<br />
+		&nbsp; &nbsp; <span style="line-height: 20px;">//do something when your are&nbsp;calling</span><br />
 		}<br />
-		window.oncall_callback = function (call) {<br />
-		&nbsp; &nbsp; <span style="line-height: 20.7999992370605px;">//do something when you are oncall</span><br />
+		window.on_call_callback = function (call) {<br />
+		&nbsp; &nbsp; <span style="line-height: 20px;">//do something when you are oncall</span><br />
 		}<br />
-		window.callanswered_callback = function (call, isAnonymous) {<br />
-		&nbsp; &nbsp; <span style="line-height: 20.7999992370605px;">//do something when someone&nbsp;answer your call</span><br />
+		window.call_answered_callback = function (call, isAnonymous) {<br />
+		&nbsp; &nbsp; <span style="line-height: 20px;">//do something when someone&nbsp;answer your call</span><br />
 		}</span>
     </p>
 
     <p style="margin-left: 80px;">
-		<span style="color:#696969;">window.callended_callback = function () {<br />
-		&nbsp; &nbsp;<span style="line-height: 20.7999992370605px;">//do something when someone&nbsp;end &nbsp;your call</span><br />
+		<span style="color:#696969;">window.call_ended_callback = function () {<br />
+		&nbsp; &nbsp;<span style="line-height: 20px;">//do something when someone&nbsp;end &nbsp;your call</span><br />
 		}</span>
     </p>
 
     <p style="margin-left: 80px;">
-		<span style="color:#696969;"><span style="line-height: 20.7999992370605px;">window.answerVoiceCall_callback = function (stage) {</span><br style="line-height: 20.7999992370605px;" />
+		<span style="color:#696969;"><span style="line-height: 20px;">window.answer_voice_call_callback = function (stage) {</span><br style="line-height: 20px;" />
 		<br />
-		<span style="line-height: 20.7999992370605px;">&nbsp; &nbsp;&nbsp;</span><span style="line-height: 20.7999992370605px;">//do something when you answer voice call</span><br style="line-height: 20.7999992370605px;" />
+		<span style="line-height: 20px;">&nbsp; &nbsp;&nbsp;</span><span style="line-height: 20px;">//do something when you answer voice call</span><br style="line-height: 20px;" />
 		<br />
-		<span style="line-height: 20.7999992370605px;">}</span></span>
+		<span style="line-height: 20px;">}</span></span>
     </p>
 
     <p style="margin-left: 80px;">
-		<span style="color:#696969;">window.answerVideoCall_callback = function (stage) {<br />
+		<span style="color:#696969;">window.answer_video_call_callback = function (stage) {<br />
 		&nbsp;&nbsp; &nbsp;//do something when you answer video call<br />
 		}<br />
-		window.makeCall_callback = function (stage) {<br />
-		&nbsp; &nbsp;<span style="line-height: 20.7999992370605px;">//do something when you make call</span><br />
+		window.make_call_callback = function (stage) {<br />
+		&nbsp; &nbsp;<span style="line-height: 20px;">//do something when you make call</span><br />
 		}</span>
     </p>
 
     <p style="margin-left: 80px;">
         <br />
-		<span style="color:#696969;">window.endCall_callback = function (stage) {<br />
+		<span style="color:#696969;">window.end_call_callback = function (stage) {<br />
 		&nbsp; &nbsp;//do something when you click end call button<br />
 		}</span>
     </p>
 
     <p style="margin-left: 80px;">
-        <span style="color:#696969;">window.remotevideoinitialized_callack(videoTag){</span>
+        <span style="color:#696969;">window.remote_video_initialized_callback(videoTag){</span>
     </p>
 
     <p style="margin-left: 80px;">
@@ -301,13 +301,13 @@
     </p>
 
     <p style="margin-left: 80px;">
-		<span style="color:#696969;">window.localvideoinitialized_callback = function(videoTag){<br />
+		<span style="color:#696969;">window.local_video_initialized_callback = function(videoTag){<br />
 		&nbsp; &nbsp; //do some thing with your local video<br />
 		}</span>
     </p>
 
     <p style="margin-left: 80px;">
-		<span style="color:#696969;">window.presencenotification_callack = function() {<br />
+		<span style="color:#696969;">window.presence_notification_callback = function() {<br />
 		&nbsp; &nbsp; //do something with status notification</span>
     </p>
 

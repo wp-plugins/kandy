@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Administrator
- * Date: 13/01/2015
- * Time: 11:09
- */
-
 class KandyPage
 {
     // Holds the vars that can be posted
@@ -72,5 +65,4 @@ class KandyPage
         <div class="clear"></div>
     <?php
     }
-
 } 

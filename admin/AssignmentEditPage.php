@@ -40,7 +40,7 @@ class KandyAssignmentEditPage extends KandyPage
                     if($kandy_user_id){
                         $result = KandyApi::assignUser($kandy_user_id, $main_user_id);
                     } else{
-                        $result = KandyApi::unassignUser($kandy_user_id, $main_user_id);
+                        $result = KandyApi::unassignUser($main_user_id);
                     }
                     if($result){
                         KandyApi::redirect(

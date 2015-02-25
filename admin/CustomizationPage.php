@@ -6,14 +6,14 @@ class KandyCustomizationPage extends KandyPage
 {
     public function render()
     {
-
         $this->render_page_start("Kandy");
         ?>
-
         <h3>
             <?php _e("Kandy Style/Script Customization", "kandy"); ?>
         </h3>
+
         <p> <?php _e("Kandy Style Customization", "kandy"); ?></p>
+
         <?php
         $cssDir = KANDY_PLUGIN_DIR . "/css/shortcode/*.css";
         $cssFiles = glob($cssDir);
@@ -29,11 +29,12 @@ class KandyCustomizationPage extends KandyPage
         }
         echo "</ul>";
 
-
         $jsDir = KANDY_PLUGIN_DIR . "/js/shortcode/*.js";
         $jsFiles = $cssFiles = glob($jsDir);
+
         ?>
         <p> <?php _e("Kandy Script Customization", "kandy"); ?></p>
+
         <?php
         echo "<ul>";
         foreach($jsFiles as $jsFile){
@@ -47,10 +48,6 @@ class KandyCustomizationPage extends KandyPage
         }
         echo "</ul>";
         $this->render_page_end();
-
-
-
     }
 }
-
 ?>

@@ -16,7 +16,6 @@ class KandyCustomizationEditPage extends KandyPage
 
         if (isset($_GET['action']) && isset($_GET['fileStyle']) && isset($_GET['fileName'])) {
             $action = $_GET['action'];
-            $id = $_GET['id'];
             if ($action == "edit") {
                 //submit form
                 if(isset($_POST['fileStyle']) && isset($_POST['fileName']) && isset($_POST['fileContent'])){
@@ -144,5 +143,4 @@ class KandyCustomizationEditPage extends KandyPage
 <?php
     }
 }
-
 ?>
