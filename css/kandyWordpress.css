@@ -22,12 +22,27 @@
 .kandyButton .kandyButtonComponent {
     margin: 15px 0px;
 }
+
 .kandyButton .kandyButtonComponent label{
     display: block;
 }
+
 .kandyButton .kandyButtonComponent input {
     float: left;
     margin-right: 5px;
+    display: none;
+}
+
+.kandyButton .kandy-user-select{
+    width: 300px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.kandyButton .select2-container{
+    width: 300px;
+    display: block;
+    margin-bottom: 10px;
 }
 
 .kandyButton .kandyButtonComponent input[type='text'] {
@@ -78,9 +93,9 @@
     margin-top: 20px;
 }
 
-.kandyAddressBook .kandyDirectorySearch input{
+.kandyAddressBook .kandyDirectorySearch input[type="text"]{
     margin:10px 20px 10px 0px;
-
+    display: none;
 }
 
 .kandyAddressBook .kandyDirSearchTitle {
@@ -97,7 +112,11 @@
 
 .kandyAddressBook .userId {
     display: inline-block;
-    width: 240px;
+    width: 200px;
+}
+.kandyAddressBook .displayname {
+    display: inline-block;
+    width: 100px;
 }
 
 .kandyAddressBook .presence {
@@ -112,7 +131,11 @@
 .kandyAddressBook .kandySearchItem {
     padding: 5px;
 }
-
+.kandyAddressBook .select2-container{
+    width: 100%;
+    display: block;
+    margin-bottom: 10px;
+}
 .kandyStatus{
     margin-bottom: 10px;
 }
@@ -166,7 +189,8 @@
 }
 .kandyChat .chat-heading .contact-heading select{
     display: inline-block;
-    width: 110px;
+    width: 120px;
+    font-size: 0.8em;
     padding: 2px 0px;
 }
 
@@ -231,6 +255,11 @@
 .kandyChat .cd-tabs-navigation li {
     float: left;
     width: 98%;
+    border: none;
+}
+
+.kandyChat .cd-tabs-navigation li:hover{
+    border:none;
 }
 
 .kandyChat .cd-tabs-navigation a {
@@ -249,10 +278,15 @@
     font-weight: 700;
     background-color: rgba(233, 230, 202, 0.3);
 }
-
+.kandyChat .cd-tabs-navigation a,
+.kandyChat .cd-tabs-navigation a:hover,
+.kandyChat .cd-tabs-navigation a:active{
+    border: none;
+}
 .kandyChat .cd-tabs-navigation a.selected {
     background-color: #ffffff !important;
     font-weight: 700;
+    border: none;
 }
 
 .kandyChat .cd-tabs-navigation a::before {

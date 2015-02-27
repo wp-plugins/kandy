@@ -87,7 +87,7 @@ Home page: http://www.kandy.io/
 <strong>More information:</strong> https://github.com/kodeplusdev/kandy-wordpress
 
 == Frequently Asked Questions ==
-1. <strong>Kandy Shortcode not working:</strong> check your kandy api key, domain secret key for your application at Kandy > Settings.
+1. <strong>Kandy Shortcode not working:</strong> check your kandy api key, domain secret key, user assignment for your application at Kandy > Settings.
 
 2. <strong>Internationalizing:</strong> get the /languages/kandy.pot file and make your /languages/*.mo file to locale your language.
 

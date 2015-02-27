@@ -230,6 +230,36 @@ class KandyApi{
     }
 
     /**
+     * get kandy user by email
+     * @param $kandyUserId
+     * @return mixed
+     */
+    public static function getUserByKandyUserMail($kandyUserMail){
+        global $wpdb;
+        $result = null;
+        $getDomainNameResponse = self::getDomain();
+
+        if ($getDomainNameResponse['success']) {
+            $domainName = $getDomainNameResponse['data'];
+
+            $result = $wpdb->get_results(
+                "SELECT main_user_id
+                             FROM {$wpdb->prefix}kandy_users
+                             WHERE email = '". $kandyUserMail ."'
+                             AND domain_name = '". $domainName ."'");
+
+        }
+        if(!empty($result)){
+            $mainUserId = $result[0]->main_user_id;
+
+            $result = get_user_by('id', $mainUserId);
+        } else {
+            $result = null;
+        }
+        return $result;
+    }
+
+    /**
      * Get the domain from domain key in the configuration.
      *
      * @param bool $sync
