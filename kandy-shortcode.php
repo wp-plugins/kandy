@@ -26,7 +26,99 @@ class KandyShortcode {
         if(isset($_COOKIE['kandy_logout'])){
             KandyApi::kandyLogout($_COOKIE['kandy_logout']);
         }
+
+        // Kandy Get User For Search Action
+        add_action( 'wp_ajax_kandy_get_user_for_search', array(__CLASS__,'kandy_get_user_for_search_callback'));
+        add_action( 'wp_ajax_kandy_get_name_for_contact', array(__CLASS__,'kandy_get_name_for_contact_callback'));
+        add_action( 'wp_ajax_kandy_get_name_for_chat_content', array(__CLASS__,'kandy_get_name_for_chat_content_callback'));
     }
+
+    /**
+     * Get user for search callback
+     */
+    function kandy_get_user_for_search_callback() {
+
+        $result = array();
+        $userResults = get_users();
+
+        foreach ($userResults as $row) {
+            $kandyUser = KandyApi::getAssignUser($row->ID);
+            if($kandyUser) {
+                $kandyFullName = $kandyUser->user_id . "@" . $kandyUser->domain_name;
+                $userToAdd = array(
+                    'id' => $kandyFullName,
+                    'text' => $row->display_name
+                );
+                if(isset($_GET['q'])){
+                    $searchString = $_GET['q'];
+                    if(!empty($searchString) && strpos($userToAdd['text'],$searchString) !== false) {
+                        array_push($result, $userToAdd);
+                    }
+                } else {
+                    array_push($result, $userToAdd);
+                }
+
+            }
+        }
+        echo json_encode($result);
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    /**
+     * Kandy get name for contact
+     */
+    function kandy_get_name_for_contact_callback() {
+        $contacts = array();
+        if(isset($_GET['data'])) {
+            $contacts = $_GET['data'];
+            foreach ($contacts as &$contact) {
+                $user = KandyApi::getUserByKandyUserMail($contact['contact_email']);
+                if($user) {
+                    $displayName = $user->display_name;
+                } else {
+                    $displayName = "";
+                }
+                $contact['display_name'] = $displayName;
+            }
+
+        }
+
+        echo json_encode($contacts);
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    /**
+     * Kandy Get Name for chat content ajax
+     */
+    public function kandy_get_name_for_chat_content_callback()
+    {
+        $messages = array();
+        if(isset($_GET['data'])) {
+            $messages = $_GET['data'];
+            foreach ($messages as &$message) {
+                if (!isset($message['sender'])) {
+                    continue;
+                }
+                $sender = $message['sender'];
+                $user = KandyApi::getUserByUserId($sender['user_id']);
+                if($user) {
+                    $displayName = $user->display_name;
+                } else {
+                    $displayName = "";
+                }
+                $sender['display_name'] = $displayName;
+                $sender['contact_user_name'] = $sender['full_user_id'];
+                $message['sender'] = $sender;
+            }
+        }
+
+        echo json_encode($messages);
+        wp_die(); // this is required to terminate immediately and return a proper response
+    }
+
+    /**
+     * Register script
+     */
     static function register_my_script() {
         /*if(get_option('kandy_jquery_reload', "0")){
             wp_register_script('kandy_jquery', KANDY_JQUERY);
@@ -64,6 +156,11 @@ class KandyShortcode {
             KANDY_PLUGIN_VERSION,
             true
         );
+
+        // in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
+        wp_localize_script( 'kandy_wordpress_js', 'ajax_object',
+            array( 'ajax_url' => admin_url( 'admin-ajax.php' ), 'we_value' => 1234 ) );
+
         wp_register_script(
             'kandy_addressbook_js',
             KANDY_PLUGIN_URL . "/js/shortcode/KandyAddressBook.js",
@@ -123,10 +220,7 @@ class KandyShortcode {
             array(),
             '4.1'
         );
-
-
 	}
-
 
     /**
      * Kandy Video Content
@@ -192,12 +286,16 @@ class KandyShortcode {
      */
     function kandy_video_button_shortcode_content($attr) {
         $output = "";
+
         if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
 
                 wp_enqueue_script("kandy_video_js");
                 wp_enqueue_style("kandy_video_css");
+                //load script and css
+                wp_enqueue_script("select-2-script", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.js');
+                wp_enqueue_style("select-2-style", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.css');
 
                 //init class attribute
                 $class = 'kandyButton ';
@@ -219,7 +317,7 @@ class KandyShortcode {
 
                     '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">'.
                     '<label>User to call</label>'.
-                    '<input id="callOutUserId" type="text" value=""/>'.
+                    '<input id="callOutUserId" type="text" value="" class="select2"/>'.
                     '<input class="btnCall" id="callBtn" type="button" value="Call" onclick="kandy_make_video_call(this)"/>'.
                     '</div>'.
 
@@ -256,6 +354,11 @@ class KandyShortcode {
             if($result['success']) {
                 wp_enqueue_script("kandy_voice_js");
                 wp_enqueue_style("kandy_voice_css");
+
+                //load script and css
+                wp_enqueue_script("select-2-script", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.js');
+                wp_enqueue_style("select-2-style", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.css');
+
                 //init class attribute
                 $class = 'kandyButton ';
                 if(isset($attr['class'])){
@@ -324,7 +427,7 @@ class KandyShortcode {
 
                     '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">'.
                     '<label>'. $callOutLabel .'</label>'.
-                    '<input id="callOutUserId" type="text" value=""/>'.
+                    '<input id="callOutUserId" type="text" value="" class="select2"/>'.
                     '<input class="btnCall" id="callBtn" type="button" value="'. $callOutButtonText .'" onclick="kandy_make_voice_call(this)"/>'.
                     '</div>'.
 
@@ -422,6 +525,10 @@ class KandyShortcode {
                 wp_enqueue_script("kandy_addressbook_js");
                 wp_enqueue_style("kandy_addressbook_css");
 
+                //load script and css
+                wp_enqueue_script("select-2-script", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.js');
+                wp_enqueue_style("select-2-style", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.css');
+
                 // init title attribute
                 if(isset($attr['title'])){
                     $title = $attr['title'];
@@ -469,17 +576,11 @@ class KandyShortcode {
                 $output = '<div class="'. $class.'" id="'. $id.'" '. $htmlOptionsAttributes .'>'.
                     '<div class="kandyAddressContactList">'.
                     '<div class="myContactsTitle"><p>'. $title.'</p></div>'.
-                    '</div>'.
-
-                    '<form class="kandyDirectorySearch" onsubmit="return false;">'.
-                    $userLabel. ' : <input id="kandySearchUserName" type="text" value=""/>'.
-                    '<input type="submit" value="'. $searchLabel .'" onclick="kandy_searchDirectoryByUserName();return false;"/>'.
-                    '</form>'.
-
-                    '<div class="kandyDirSearchResults" id="dirSearchResults">'.
-                    '<div class="kandyDirSearchTitle">'. $searchResultLabel .'</div>'.
-                    '</div>'.
-                    '</div>';
+                    '</div>
+                    <div class="kandyDirectorySearch">'.$userLabel.':<input id="kandySearchUserName" class="select2" />
+                    <input type="button" value="Add Contact" onclick="addContacts();"/>
+                    </div>
+                    ';
                 if(isset($result['output'])){
                     $output .= $result['output'];
                 }
@@ -659,5 +760,43 @@ class KandyShortcode {
         if($current_user) {
             setcookie( 'kandy_logout', $current_user->ID, time() + 3600);
         }
+    }
+
+    /**
+     * Get option HTML for kandy user select
+     * @param $userId
+     * @return string
+     */
+    static   function getKandyUserOptionData(){
+        $result = "";
+        $userResults = get_users();
+
+        foreach ($userResults as $row) {
+            $kandyUser = KandyApi::getAssignUser($row->ID);
+            if($kandyUser) {
+                $kandyFullName = $kandyUser->user_id . "@" . $kandyUser->domain_name;
+                $result .= "<option value ='" . $kandyFullName."'>". $row->display_name . "</option>";
+            }
+        }
+        if(empty($result)) {
+            $result .= "<option value =''>" . __('Please select assigned user') ."</option>";
+        }
+        return $result;
+
+    }
+
+    /**
+     * Add script to active kandy user select 2
+     * @param $elementId
+     */
+    static function activeSelect2($elementId){
+        ?>
+        <script type="text/javascript">
+            jQuery(document).ready(function($){
+
+                $("#<?php echo $elementId; ?>").select2();
+            });
+        </script>
+    <?php
     }
 }

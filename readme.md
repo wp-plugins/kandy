@@ -121,18 +121,23 @@ Two **kandyVideo** object should be inline because some editor will insert a bre
 window.login_success_callback = function () {
    //do something when you login successfully
 }
+
 window.login_failed_callback = function () {
     //do something when you login fail
 }
+
 window.call_incoming_callback = function (call, isAnonymous) {
     //do something when your are calling
 }
+
 window.on_call_callback = function (call) {
     //do something when you are oncall
 }
+
 window.call_answered_callback = function (call, isAnonymous) {
     //do something when someone answer your call
 }
+
 window.call_ended_callback = function () {
    //do something when someone end  your call
 }
@@ -144,12 +149,15 @@ window.answer_voice_call_callback = function (stage) {
 window.answer_video_call_callback = function (stage) {
     //do something when you answer video call
 }
+
 window.make_call_callback = function (stage) {
    //do something when you make call
 }
+
 window.end_call_callback = function (stage) {
    //do something when you click end call button
 }
+
 window.remote_video_initialized_callback(videoTag){
    //do something with your remote video
 }
@@ -200,7 +208,7 @@ KandyApi::getDomain();
 ```
 Get kandy domain from kandy settings or remote server
 
-Return: **array **
+Return: **array**
 
 ```sh
 $result = array("success" => true,
@@ -290,5 +298,5 @@ $result = array(
 ```
 
 ### Troubleshooting
-- **Kandy ShortCode not working:** check your kandy api key, domain secret key for your application at **Kandy > Settings**.
+- **Kandy ShortCode not working:** check your kandy api key, domain secret key, user assignment for your application at **Kandy > Settings**.
 - **Internationalizing**: get the /languages/kandy.pot file and make your /languages/*.mo file to locale your language.
