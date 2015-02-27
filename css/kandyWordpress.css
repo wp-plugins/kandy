@@ -27,7 +27,7 @@
     display: block;
 }
 
-.kandyButton .kandyButtonComponent input {
+.kandyButton .kandyButtonComponent input[type='text'] {
     float: left;
     margin-right: 5px;
     display: none;
