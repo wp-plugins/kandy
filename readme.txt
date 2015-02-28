@@ -1,6 +1,6 @@
 === Kandy ===
-Contributors: Kodeplusdev
-Tags: Kandy, webrtc, audio, video, chat, streaming, video-streaming, live-streaming
+Contributors: kandy-io
+Tags: kandy, webrtc, audio, video, chat, streaming, video-streaming, live-streaming, peer-to-peer video, collaboration
 Requires at least: 3.8
 Tested up to: 4.1
 Stable tag: 1.4
@@ -25,6 +25,8 @@ Home page: http://www.kandy.io/
 * For some transactions (like instant messaging) and state information (presence), <strong>KANDY</strong> utilizes WebSockets or Long Polling depending upon the browser specifics. The <strong>KANDY</strong> JavaScript library creates these connections depending on your application regarding and will manage these without any requirement from your application.
 
 <strong>HOW TO USE</strong>
+
+- Login to http://www.kandy.io/ to achieve api key, domain secret key and domain name then enter those information to Kandy plugin setting page.
 
 - Create new page with kandy shortcode syntax:
 
