@@ -5,7 +5,7 @@ Requires at least: 3.8
 Tested up to: 4.1
 Stable tag: 1.4
 License: GPLv2
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License URI: http://www.gnu.org/licenses/gpl-2.0.html.
 
 This WordPress plugin encapsulates all of Kandy’s JS SDK and Restful APIs. Kandy is a product by GENBAND (www.genband.com) that utilizes WebRTC to enable peer to peer audio and video calls and chat. SMS and PSTN calling support will be added to this package in the near future.
 With this plugin, you can enable video and audio calling between two users that are logged into your WordPress website.
