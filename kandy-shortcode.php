@@ -101,10 +101,12 @@ class KandyShortcode {
                 }
                 $sender = $message['sender'];
                 $user = KandyApi::getUserByUserId($sender['user_id']);
+                $displayName = "";
                 if($user) {
-                    $displayName = $user->display_name;
-                } else {
-                    $displayName = "";
+                    $result = get_user_by('id', $user->main_user_id);
+                    if($result) {
+                        $displayName = $result->display_name;
+                    }
                 }
                 $sender['display_name'] = $displayName;
                 $sender['contact_user_name'] = $sender['full_user_id'];
@@ -634,7 +636,7 @@ class KandyShortcode {
                 $assignUser = KandyApi::getAssignUser($current_user->ID);
                 if($assignUser) {
                     $output = '<div class="' . $class .' cd-tabs" id="'. $id .'" '. $htmlOptionsAttributes .' >'.
-                        '<input type="hidden" class="kandy_current_username" value="'. $assignUser->user_id .'"/>'.
+                        '<input type="hidden" class="kandy_current_username" value="'. $current_user->display_name .'"/>'.
                         '<div class="chat-heading">
                             <div class="contact-heading">
                             <label>'. $contactLabel .'</label>
