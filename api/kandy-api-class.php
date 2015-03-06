@@ -3,7 +3,6 @@
 define('KANDY_USER_ALL', 1);
 define('KANDY_USER_ASSIGNED', 2);
 define('KANDY_USER_UNASSIGNED', 3);
-
 class KandyApi{
     /**
      * Get Kandy User Data for assignment table.
@@ -251,8 +250,13 @@ class KandyApi{
         }
         if(!empty($result)){
             $mainUserId = $result[0]->main_user_id;
+            if (!empty($mainUserId)) {
+                $result = get_user_by('id', $mainUserId);
+            }
+            else {
+                $result = KANDY_UN_ASSIGN_USER;
+            }
 
-            $result = get_user_by('id', $mainUserId);
         } else {
             $result = null;
         }
