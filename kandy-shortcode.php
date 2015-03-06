@@ -73,8 +73,12 @@ class KandyShortcode {
             $contacts = $_GET['data'];
             foreach ($contacts as &$contact) {
                 $user = KandyApi::getUserByKandyUserMail($contact['contact_email']);
-                if($user) {
-                    $displayName = $user->display_name;
+                if(!empty($user)) {
+                    if($user == KANDY_UN_ASSIGN_USER) {
+                        $displayName = KANDY_UN_ASSIGN_USER;
+                    } else {
+                        $displayName = $user->display_name;
+                    }
                 } else {
                     $displayName = "";
                 }

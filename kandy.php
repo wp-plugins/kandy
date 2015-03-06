@@ -29,6 +29,9 @@ define('KANDY_VIDEO_WRAPPER_CLASS_DEFAULT', 'kandyVideoWrapper');
 define('KANDY_VIDEO_STYLE_DEFAULT', 'width: 340px; height: 250px;background-color: darkslategray;');
 define('KANDY_VIDEO_MY_TITLE_DEFAULT', 'me');
 define('KANDY_VIDEO_THEIR_TITLE_DEFAULT', 'their');
+
+define('KANDY_UN_ASSIGN_USER', 'kandy-un-assign-user');
+
 require_once dirname(__FILE__) . '/kandy-admin-class.php';
 require_once dirname(__FILE__) . '/kandy-shortcode.php';
 require_once dirname(__FILE__) . '/api/kandy-api-class.php';
