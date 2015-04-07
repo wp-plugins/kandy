@@ -29,7 +29,7 @@
 }
 
 .myAddressBookStyle .userId {
-    width: 200px;
+    width: 290px;
     display: inline-block
 }
 
@@ -39,7 +39,7 @@
 }
 
 .myAddressBookStyle .presence {
-    width: 130px;
+    width: 100px;
     display: inline-block
 }
 
