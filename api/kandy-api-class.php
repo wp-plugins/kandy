@@ -160,7 +160,7 @@ class KandyApi{
                             $result = $wpdb->get_results(
                                 "SELECT *
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE main_user_id = ''
+                             WHERE main_user_id = '' || main_user_id IS NULL
                              AND domain_name = '". $domainName ."'");
                         }
                     }
@@ -241,10 +241,16 @@ class KandyApi{
         if ($getDomainNameResponse['success']) {
             $domainName = $getDomainNameResponse['data'];
 
+            $parseResult = explode('@', $kandyUserMail);
+            $userId = '';
+            if (!empty($parseResult[0])) {
+                $userId = $parseResult[0];
+            }
+
             $result = $wpdb->get_results(
                 "SELECT main_user_id
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE email = '". $kandyUserMail ."'
+                             WHERE user_id = '". $userId ."'
                              AND domain_name = '". $domainName ."'");
 
         }

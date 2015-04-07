@@ -112,7 +112,7 @@
 
 .kandyAddressBook .userId {
     display: inline-block;
-    width: 200px;
+    width: 290px;
 }
 .kandyAddressBook .displayname {
     display: inline-block;
@@ -120,7 +120,7 @@
 }
 
 .kandyAddressBook .presence {
-    width: 130px;
+    width: 100px;
     display: inline-block;
 }
 
