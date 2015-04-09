@@ -274,7 +274,7 @@ class KandyShortcode {
                 $output .= '<span class="video" id="' . $id .'"  '. $htmlOptionsAttributes.'></span>';
                 $output .= '</div>';
             } else {
-                $output = '<p>Can not setup kandy video...</p>';
+                $output = '<p>' . __('Can not setup kandy video. Please contact administrator') . '<p>';
             }
 
             if(isset($result['output'])){
@@ -342,7 +342,7 @@ class KandyShortcode {
                 }
 
             } else {
-                $output = '<p>' . __('Can not setup kandy video button...') . '<p>';
+                $output = '<p>' . __('Can not setup kandy video button. Please contact administrator') . '<p>';
             }
         }
         return $output;
@@ -453,7 +453,7 @@ class KandyShortcode {
                     $output .= $result['output'];
                 }
             } else {
-                $output = '<p>' . __('Can not setup kandy voice button...') . '<p>';
+                $output = '<p>' . __('Can not setup kandy voice button. Please contact administrator') . '<p>';
             }
         }
         return $output;
@@ -512,7 +512,7 @@ class KandyShortcode {
                     $output .= $result['output'];
                 }
             } else {
-                $output = '<p>' . __('Can not setup kandy status...') . '<p>';
+                $output = '<p>' . __('Can not setup kandy status. Please contact administrator') . '<p>';
             }
         }
         return $output;
@@ -591,7 +591,7 @@ class KandyShortcode {
                     $output .= $result['output'];
                 }
             } else {
-                $output = '<p>' . __('Can not setup kandy address book...') . '<p>';
+                $output = '<p>' . __('Can not setup kandy address book. Please contact administrator') . '<p>';
             }
         }
         return $output;
@@ -674,7 +674,7 @@ class KandyShortcode {
                 }
 
             } else {
-                $output = '<p>' . __('Can not setup kandy video...') . '<p>';
+                $output = '<p>' . __('Can not setup kandy video. Please contact administrator') . '<p>';
             }
         }
         return $output;
