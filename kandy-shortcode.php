@@ -45,19 +45,29 @@ class KandyShortcode {
             $kandyUser = KandyApi::getAssignUser($row->ID);
             if($kandyUser) {
                 $kandyFullName = $kandyUser->user_id . "@" . $kandyUser->domain_name;
-                $userToAdd = array(
-                    'id' => $kandyFullName,
-                    'text' => $row->display_name
-                );
+
                 if(isset($_GET['q'])){
                     $searchString = $_GET['q'];
-                    if(!empty($searchString) && strpos($userToAdd['text'],$searchString) !== false) {
+                    if(!empty($searchString) && stripos($row->display_name,$searchString) !== false) {
+                        $userToAdd = array(
+                            'id' => $kandyFullName,
+                            'text' => $row->display_name
+                        );
+                        array_push($result, $userToAdd);
+                    } else if(!empty($searchString) && stripos($row->user_login,$searchString) !== false) {
+                        $userToAdd = array(
+                            'id' => $kandyFullName,
+                            'text' => $row->user_login
+                        );
                         array_push($result, $userToAdd);
                     }
                 } else {
+                    $userToAdd = array(
+                        'id' => $kandyFullName,
+                        'text' => $row->display_name
+                    );
                     array_push($result, $userToAdd);
                 }
-
             }
         }
         echo json_encode($result);
