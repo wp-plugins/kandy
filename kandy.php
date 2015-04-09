@@ -80,10 +80,16 @@ function kandy_install() {
     }
 }
 function kandy_uninstall(){
-    delete_option( "kandy_db_version" );
+
     //drop a custom db table
     global $wpdb;
     $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}kandy_users" );
 
     delete_option( "kandy_db_version" );
+    delete_option( "kandy_api_key" );
+    delete_option( "kandy_domain_name" );
+    delete_option( "kandy_domain_secret_key" );
+    delete_option( "kandy_fcs_url" );
+    delete_option( "kandy_jquery_reload" );
+    delete_option( "kandy_js_url" );
 }
