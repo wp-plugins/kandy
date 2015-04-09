@@ -34,7 +34,8 @@ class KandyApi{
 
             $tableCell = array(
                 'ID'  => $row->ID,
-                'username' => $row->display_name,
+                'username' => $row->user_login,
+                'name' => $row->display_name,
                 "kandy_user_id"=> ($kandyUser) ? $kandyUser->user_id : null,
                 "action" => "<a href='". $url."' class='button kandy_edit'>". __("Edit", 'kandy'). "</a>"
             );

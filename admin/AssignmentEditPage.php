@@ -66,7 +66,7 @@ class KandyAssignmentEditPage extends KandyPage
                                 <tr valign="top" id="kandy_api_key_row">
                                     <th style="width:100px;" scope="row" id="kandy_api_key_label">
                                         <label for="kandy_api_key">
-                                            <?php _e("Username", "kandy") ?>
+                                            <?php _e("Name", "kandy") ?>
                                         </label>
                                     </th>
                                     <td id="kandy_api_key_field">

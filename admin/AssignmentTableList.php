@@ -30,6 +30,7 @@ class AssignTableList extends WP_List_Table
         switch ($column_name) {
             case 'ID':
             case 'username':
+            case 'name':
             case 'kandy_user_id':
             case 'action':
                 return $item[$column_name];
@@ -46,6 +47,7 @@ class AssignTableList extends WP_List_Table
         $columns = array(
             'ID'            => __("ID", 'kandy'),
             'username'      => __('Username', 'kandy'),
+            'name'      => __('Name', 'kandy'),
             'kandy_user_id' => __('Kandy User', 'kandy'),
             'action'        => __('Action', 'kandy')
         );
