@@ -6,6 +6,9 @@ class KandyAdmin {
         load_plugin_textdomain( 'kandy', false, KANDY_PLUGIN_DIR. "/languages" );
     }
 
+    /**
+     * Implement Menu Hook
+     */
     public function admin_menu() {
         add_menu_page(
             "Kandy Configuration",
@@ -51,6 +54,9 @@ class KandyAdmin {
         );
     }
 
+    /**
+     * Kandy Admin Page.
+     */
     function kandy_admin_pages() {
         switch ($_GET["page"]) {
             case "kandy" :

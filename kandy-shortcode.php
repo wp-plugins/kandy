@@ -39,29 +39,15 @@ class KandyShortcode {
     function kandy_get_user_for_search_callback() {
 
         $result = array();
-        $userResults = get_users();
+        if(isset($_GET['q'])){
+            $searchString = $_GET['q'];
+            $userResults = get_users(array('search'=> $searchString));
 
-        foreach ($userResults as $row) {
-            $kandyUser = KandyApi::getAssignUser($row->ID);
-            if($kandyUser) {
-                $kandyFullName = $kandyUser->user_id . "@" . $kandyUser->domain_name;
+            foreach ($userResults as $row) {
+                $kandyUser = KandyApi::getAssignUser($row->ID);
+                if($kandyUser) {
+                    $kandyFullName = $kandyUser->user_id . "@" . $kandyUser->domain_name;
 
-                if(isset($_GET['q'])){
-                    $searchString = $_GET['q'];
-                    if(!empty($searchString) && stripos($row->display_name,$searchString) !== false) {
-                        $userToAdd = array(
-                            'id' => $kandyFullName,
-                            'text' => $row->display_name
-                        );
-                        array_push($result, $userToAdd);
-                    } else if(!empty($searchString) && stripos($row->user_login,$searchString) !== false) {
-                        $userToAdd = array(
-                            'id' => $kandyFullName,
-                            'text' => $row->user_login
-                        );
-                        array_push($result, $userToAdd);
-                    }
-                } else {
                     $userToAdd = array(
                         'id' => $kandyFullName,
                         'text' => $row->display_name
@@ -563,22 +549,16 @@ class KandyShortcode {
                     $id = $attr['id'] ;
                 }
 
-                //init id attribute
+                //init userLabel attribute
                 $userLabel = 'User';
                 if(isset($attr['userLabel'])){
                     $userLabel = $attr['userLabel'] ;
                 }
 
-                //init id attribute
+                //init searchLabel attribute
                 $searchLabel = 'Search';
                 if(isset($attr['searchLabel'])){
                     $searchLabel = $attr['searchLabel'] ;
-                }
-
-                //init id attribute
-                $searchResultLabel = 'Directory Search Results';
-                if(isset($attr['searchResultLabel'])){
-                    $searchResultLabel = $attr['searchResultLabel'] ;
                 }
 
                 //init htmlOptions attribute

@@ -60,7 +60,7 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
         <pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-    [kandyVideoButton
+        [kandyVideoButton
             class = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myButtonStype<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
             id = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>my-video-button<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
             incomingLabel = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>Incoming Call...<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
@@ -80,7 +80,7 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
         <pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-    [kandyVideo
+        [kandyVideo
         title = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>Me<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
         id = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myVideo<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
         style = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>width: 300px; height: 225px;background-color: darkslategray;<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
@@ -94,7 +94,7 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
         <pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-    [kandyVoiceButton
+        [kandyVoiceButton
             class = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myButtonStype<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
             id = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>my-video-button<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
             incomingLabel = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>Incoming Call...<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
@@ -115,7 +115,7 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
         <pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-    [kandyStatus
+        [kandyStatus
             class = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myStatusStyle<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
             id = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myStatus<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>
             title = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>My Status<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
@@ -171,9 +171,9 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
         <pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-    [kandyVideoButton class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myButtonStype<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
-    [kandyVideo title=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>Me<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myVideo<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> style = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>width: 300px;height: 225px;<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
-    [kandyVideo title=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>Their<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>theirVideo<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> style = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>width:300px;height: 225px;<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
+        [kandyVideoButton class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myButtonStype<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
+        [kandyVideo title=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>Me<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myVideo<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> style = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>width: 300px;height: 225px;<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
+        [kandyVideo title=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>Their<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>theirVideo<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> style = <span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>width:300px;height: 225px;<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
         </pre>
         </div>
 
@@ -187,8 +187,8 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
         <pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-    [kandyStatus class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myStatusStyle<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myStatus<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
-    [kandyAddressBook class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myAddressBookStyle<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myContact<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
+        [kandyStatus class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myStatusStyle<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myStatus<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
+        [kandyAddressBook class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myAddressBookStyle<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myContact<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
         </pre>
         </div>
 
@@ -198,7 +198,7 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
         <pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-    [kandyChat class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myChatStyle<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id =<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>my-chat<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
+        [kandyChat class=<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>myChatStyle<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span> id =<span class="pl-s1" style="box-sizing: border-box; color: rgb(223, 80, 0);"><span class="pl-pds" style="box-sizing: border-box;">&quot;</span>my-chat<span class="pl-pds" style="box-sizing: border-box;">&quot;</span></span>]
         </pre>
         </div>
 
@@ -246,49 +246,57 @@ class KandyHelpPage extends KandyPage
 
         <div class="highlight highlight-sh" style="box-sizing: border-box; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">
 	<pre style="box-sizing: border-box; overflow: auto; font-family: Consolas, 'Liberation Mono', Menlo, Courier, monospace; font-size: 13px; margin-top: 0px; margin-bottom: 0px; font-stretch: normal; line-height: 1.45; padding: 16px; border-radius: 3px; word-wrap: normal; word-break: normal; background-color: rgb(247, 247, 247);">
-window.login_success_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">()</span> {
-   //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you login successfully
-}
-window.login_failed_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">()</span> {
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you login fail
-}
-window.call_incoming_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(call,</span> isAnonymous) {
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when your are calling
-}
-window.on_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(call)</span> {
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you are oncall
-}
-window.call_answered_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(call,</span> isAnonymous) {
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when someone answer your call
-}
-window.call_ended_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">()</span> {
-   //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when someone end  your call
-}
+        window.login_success_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">()</span> {
+           //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you login successfully
+        }
 
-window.answer_voice_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you answer voice call
-}
+        window.login_failed_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">()</span> {
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you login fail
+        }
 
-window.answer_video_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you answer video call
-}
-window.make_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
-   //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you make call
-}
-window.end_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
-   //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you click end call button
-}
-window.remote_video_initialized_callback(videoTag){
-   //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something with your remote video
-}
+        window.call_incoming_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(call,</span> isAnonymous) {
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when your are calling
+        }
 
-window.local_video_initialized_callback = function(videoTag){
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> some thing with your <span class="pl-s" style="box-sizing: border-box; color: rgb(167, 29, 93);">local</span> video
-}
+        window.on_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(call)</span> {
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you are oncall
+        }
 
-window.presence_notification_callback = <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">function</span>() {
-    //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something with status notification
-}</pre>
+        window.call_answered_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(call,</span> isAnonymous) {
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when someone answer your call
+        }
+
+        window.call_ended_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">()</span> {
+           //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when someone end  your call
+        }
+
+        window.answer_voice_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you answer voice call
+        }
+
+        window.answer_video_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you answer video call
+        }
+
+        window.make_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
+           //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you make call
+        }
+
+        window.end_call_callback = <span class="pl-st" style="box-sizing: border-box; color: rgb(167, 29, 93);">function</span> <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">(stage)</span> {
+           //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something when you click end call button
+        }
+
+        window.remote_video_initialized_callback(videoTag){
+           //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something with your remote video
+        }
+
+        window.local_video_initialized_callback = function(videoTag){
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> some thing with your <span class="pl-s" style="box-sizing: border-box; color: rgb(167, 29, 93);">local</span> video
+        }
+
+        window.presence_notification_callback = <span class="pl-en" style="box-sizing: border-box; color: rgb(121, 93, 163);">function</span>() {
+            //<span class="pl-k" style="box-sizing: border-box; color: rgb(167, 29, 93);">do</span> something with status notification
+        }</pre>
         </div>
 
         <h3 style="box-sizing: border-box; margin-top: 1em; margin-bottom: 16px; line-height: 1.43; font-size: 1.5em; position: relative; font-weight: bold; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif;">

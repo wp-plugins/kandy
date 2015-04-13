@@ -9,6 +9,15 @@ class RestClient
     protected $_headers = array();
     protected $_body = '';
 
+    /**
+     * Http Request to server use method GET
+     *
+     * @param $uri
+     * @param array $headers
+     * @param int $timeout
+     * @return $this
+     * @throws RestClientException
+     */
     public function get($uri, $headers = array(), $timeout = 30)
     {
         $ch = curl_init($uri);
@@ -36,6 +45,16 @@ class RestClient
         return $this;
     }
 
+    /**
+     * Http Request to server use method POST.
+     *
+     * @param $uri
+     * @param $payload
+     * @param array $headers
+     * @param int $timeout
+     * @return $this
+     * @throws RestClientException
+     */
     public function post($uri, $payload, $headers = array(), $timeout = 30)
     {
         $ch = curl_init($uri);
@@ -64,6 +83,16 @@ class RestClient
         return $this;
     }
 
+    /**
+     * Http Request to server use method PUT.
+     *
+     * @param $uri
+     * @param $payload
+     * @param array $headers
+     * @param int $timeout
+     * @return $this
+     * @throws RestClientException
+     */
     public function put($uri, $payload, $headers = array(), $timeout = 30)
     {
         $ch = curl_init($uri);
@@ -93,6 +122,14 @@ class RestClient
         return $this;
     }
 
+    /**
+     * Http Request to server use method DELETE.
+     * @param $uri
+     * @param array $headers
+     * @param int $timeout
+     * @return $this
+     * @throws RestClientException
+     */
     public function delete($uri, $headers = array(), $timeout = 30)
     {
         $ch = curl_init($uri);
@@ -119,10 +156,10 @@ class RestClient
         return $this;
     }
 
-    /*
-    *	After the request - functions to return data
+    /**
+     * Get status text from response.
+     * @return int|string
      */
-
     public function getStatusText()
     {
         if ($this->_submitted) {
@@ -131,6 +168,10 @@ class RestClient
         return 'UNKNOWN';
     }
 
+    /**
+     * Get status code from response.
+     * @return int|string
+     */
     public function getStatusCode()
     {
         if ($this->_submitted) {
@@ -139,6 +180,11 @@ class RestClient
         return 0;
     }
 
+    /**
+     * Get Header from Response.
+     * @param $index
+     * @return string
+     */
     public function getHeader($index)
     {
         if (isset($this->_headers[$index])) {
@@ -147,16 +193,28 @@ class RestClient
         return 'N/A';
     }
 
+    /**
+     * Get content from respone.
+     * @return string
+     */
     public function getContent()
     {
         return $this->_body;
     }
 
+    /**
+     * Get Header from response.
+     * @return array
+     */
     public function getHeaders()
     {
         return $this->_headers;
     }
 
+    /**
+     * Get time from response.
+     * @return string
+     */
     public function getTime()
     {
         return $this->getHeader('total_time');
