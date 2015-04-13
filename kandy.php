@@ -45,9 +45,8 @@ register_activation_hook( __FILE__, 'kandy_install' );
 //uninstall plugin
 register_uninstall_hook( __FILE__, 'kandy_uninstall' );
 
-
 /**
- * Kandy Installer
+ * Kandy Install Hook.
  */
 function kandy_install() {
     global $wpdb;
@@ -79,6 +78,10 @@ function kandy_install() {
         update_option( 'kandy_db_version', $kandyDbVersion );
     }
 }
+
+/**
+ * Kandy Uninstall Hook.
+ */
 function kandy_uninstall(){
 
     //drop a custom db table

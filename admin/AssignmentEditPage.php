@@ -167,5 +167,4 @@ class KandyAssignmentEditPage extends KandyPage
 <?php
     }
 }
-
 ?>

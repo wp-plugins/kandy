@@ -6,8 +6,23 @@ class KandySettingsPage extends KandyPage
     {
         if(isset($_POST["kandy_settings"])){
             $settingAttributes = $_POST["kandy_settings"];
+            $oldApiKey = get_option('kandy_api_key', KANDY_API_KEY);
+            $oldSecretKey = get_option('kandy_domain_secret_key', KANDY_DOMAIN_SECRET_KEY);
+
             foreach($settingAttributes as $key => $value){
                 update_option($key, $value);
+            }
+
+            $newApiKey = get_option('kandy_api_key', KANDY_API_KEY);
+            $newSecretKey = get_option('kandy_domain_secret_key', KANDY_DOMAIN_SECRET_KEY);
+
+            if(array_key_exists ('kandy_api_key', $settingAttributes) && array_key_exists ('kandy_domain_secret_key', $settingAttributes)) {
+                if($oldApiKey != $newApiKey || $oldSecretKey != $newSecretKey) {
+                    global $wpdb;
+                    // Delete all old kandy users, and their assignment.
+                    $wpdb->query("TRUNCATE TABLE ".$wpdb->prefix."kandy_users");
+                    KandyApi::syncUsers();
+                }
             }
         }
         $this->render_page_start('Kandy Settings');

@@ -13,6 +13,11 @@ class KandyPage
     // The baseurl of the Wordpress admin page
     protected $base_url = "admin.php";
 
+    /**
+     * Render page start event.
+     *
+     * @param $title
+     */
     protected function render_page_start($title)
     {
         ?>
@@ -23,6 +28,9 @@ class KandyPage
     <?php
     }
 
+    /**
+     * Render all message in page.
+     */
     protected function render_all_messages()
     {
         // Check for post error messages
@@ -45,6 +53,12 @@ class KandyPage
         }
     }
 
+    /**
+     * Render message in page.
+     *
+     * @param $msg
+     * @param string $type
+     */
     protected function render_message($msg, $type = 'updated')
     {
         $type = ('error' == $type) ? 'error' : 'updated fade';
@@ -56,6 +70,9 @@ class KandyPage
         echo '</p></div>';
     }
 
+    /**
+     * Render page end.
+     */
     protected function render_page_end()
     {
         ?>

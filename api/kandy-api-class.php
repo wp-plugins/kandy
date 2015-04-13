@@ -335,10 +335,8 @@ class KandyApi{
                 'message' => 'Invalid Domain Request'
             );
         }
-
-
-
     }
+
     /**
      * Get all users from Kandy and import/update to kandy_user
      *
@@ -404,6 +402,7 @@ class KandyApi{
 
                     }
                 }//end foreach
+
                 if(!empty($receivedUsers)){
                     $inArrayStr = "";
                     foreach($receivedUsers as $receivedUser){
@@ -512,7 +511,6 @@ class KandyApi{
 
             return false;
         }
-
     }
 
     /**
