@@ -41,7 +41,7 @@ class KandyShortcode {
         $result = array();
         if(isset($_GET['q'])){
             $searchString = $_GET['q'];
-            $userResults = get_users(array('search'=> $searchString));
+            $userResults = get_users(array('search'=> '*' . $searchString . '*'));
 
             foreach ($userResults as $row) {
                 $kandyUser = KandyApi::getAssignUser($row->ID);
