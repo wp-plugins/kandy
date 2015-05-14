@@ -3,7 +3,6 @@
 define('KANDY_USER_ALL', 1);
 define('KANDY_USER_ASSIGNED', 2);
 define('KANDY_USER_UNASSIGNED', 3);
-
 class KandyApi{
     /**
      * Get Kandy User Data for assignment table.
@@ -35,7 +34,8 @@ class KandyApi{
 
             $tableCell = array(
                 'ID'  => $row->ID,
-                'username' => $row->display_name,
+                'username' => $row->user_login,
+                'name' => $row->display_name,
                 "kandy_user_id"=> ($kandyUser) ? $kandyUser->user_id : null,
                 "action" => "<a href='". $url."' class='button kandy_edit'>". __("Edit", 'kandy'). "</a>"
             );
@@ -161,7 +161,7 @@ class KandyApi{
                             $result = $wpdb->get_results(
                                 "SELECT *
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE main_user_id = ''
+                             WHERE main_user_id = '' || main_user_id IS NULL
                              AND domain_name = '". $domainName ."'");
                         }
                     }
@@ -242,17 +242,28 @@ class KandyApi{
         if ($getDomainNameResponse['success']) {
             $domainName = $getDomainNameResponse['data'];
 
+            $parseResult = explode('@', $kandyUserMail);
+            $userId = '';
+            if (!empty($parseResult[0])) {
+                $userId = $parseResult[0];
+            }
+
             $result = $wpdb->get_results(
                 "SELECT main_user_id
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE email = '". $kandyUserMail ."'
+                             WHERE user_id = '". $userId ."'
                              AND domain_name = '". $domainName ."'");
 
         }
         if(!empty($result)){
             $mainUserId = $result[0]->main_user_id;
+            if (!empty($mainUserId)) {
+                $result = get_user_by('id', $mainUserId);
+            }
+            else {
+                $result = KANDY_UN_ASSIGN_USER;
+            }
 
-            $result = get_user_by('id', $mainUserId);
         } else {
             $result = null;
         }
@@ -324,10 +335,8 @@ class KandyApi{
                 'message' => 'Invalid Domain Request'
             );
         }
-
-
-
     }
+
     /**
      * Get all users from Kandy and import/update to kandy_user
      *
@@ -393,6 +402,7 @@ class KandyApi{
 
                     }
                 }//end foreach
+
                 if(!empty($receivedUsers)){
                     $inArrayStr = "";
                     foreach($receivedUsers as $receivedUser){
@@ -501,7 +511,6 @@ class KandyApi{
 
             return false;
         }
-
     }
 
     /**

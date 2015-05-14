@@ -32,7 +32,9 @@
     margin-right: 5px;
     display: none;
 }
-
+.kandyButton .kandyButtonComponent input[type='button'] {
+    margin-right: 5px;
+}
 .kandyButton .kandy-user-select{
     width: 300px;
     display: block;
@@ -112,7 +114,7 @@
 
 .kandyAddressBook .userId {
     display: inline-block;
-    width: 200px;
+    width: 290px;
 }
 .kandyAddressBook .displayname {
     display: inline-block;
@@ -120,7 +122,7 @@
 }
 
 .kandyAddressBook .presence {
-    width: 130px;
+    width: 100px;
     display: inline-block;
 }
 
