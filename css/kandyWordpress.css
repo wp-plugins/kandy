@@ -32,7 +32,9 @@
     margin-right: 5px;
     display: none;
 }
-
+.kandyButton .kandyButtonComponent input[type='button'] {
+    margin-right: 5px;
+}
 .kandyButton .kandy-user-select{
     width: 300px;
     display: block;

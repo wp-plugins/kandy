@@ -111,8 +111,10 @@ class KandySettingsPage extends KandyPage
                     <td id="kandy_js_url_field">
                         <input name="kandy_settings[kandy_js_url]" type="text"
                                id="kandy_js_url"
-                               placeholder="" class="" value="<?php echo get_option('kandy_js_url', KANDY_JS_URL); ?>"
-                               style="width:60%">
+                               placeholder="" class="" value="<?php echo get_option('kandy_js_url', KANDY_JS_URL) == '' ? KANDY_JS_URL : get_option('kandy_js_url', KANDY_JS_URL); ?>"
+                               style="width:60%"
+                               disabled
+                            >
 
                         <p class="description">
                             <?php _e(
@@ -132,8 +134,9 @@ class KandySettingsPage extends KandyPage
                     <td id="kandy_fcs_url_field">
                         <input name="kandy_settings[kandy_fcs_url]" type="text"
                                id="kandy_fcs_url"
-                               placeholder="" class="" value="<?php echo get_option('kandy_fcs_url', KANDY_FCS_URL); ?>"
-                               style="width:60%">
+                               placeholder="" class="" value="<?php echo get_option('kandy_fcs_url', KANDY_FCS_URL) == "" ? KANDY_FCS_URL: get_option('kandy_fcs_url', KANDY_FCS_URL); ?>"
+                               style="width:60%"
+                               disabled>
 
                         <p class="description">
                             <?php _e(

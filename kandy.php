@@ -1,22 +1,23 @@
 <?php
 /**
  * Plugin Name: kandy
- * Plugin URI: https://github.com/kodeplusdev/kandy-wordpress
+ * Plugin URI: https://github.com/Kandy-IO/kandy-wordpress
  * Description: Kandy for wordpress.
- * Version: 1.4
+ * Version: 2.2.1
  * Text Domain: kandy
- * Author: KodePlus
- * Author URI: https://github.com/kodeplusdev
+ * Author: Kandy-IO
+ * Author URI: https://github.com/Kandy-IO
  * License: GPL2
  */
 $pluginURL = is_ssl() ? str_replace("http://", "https://", WP_PLUGIN_URL) : WP_PLUGIN_URL;
-define("KANDY_PLUGIN_VERSION", "1.4");
+define("KANDY_PLUGIN_VERSION", "2.2.1");
 define("KANDY_PLUGIN_PREFIX", "kandy");
 define("KANDY_PLUGIN_URL", $pluginURL . "/" . plugin_basename(dirname(__FILE__)));
 define('KANDY_PLUGIN_DIR', dirname(__FILE__));
 define('KANDY_API_BASE_URL', 'https://api.kandy.io/v1.1/');
-define('KANDY_JS_URL', "https://kandy-portal.s3.amazonaws.com/public/javascript/kandy/1.1.4/kandy.js");
-define('KANDY_FCS_URL', "https://kandy-portal.s3.amazonaws.com/public/javascript/fcs/3.0.0/fcs.js");
+define('KANDY_JS_URL', site_url() . "/wp-content/plugins/kandy/js/kandy-2.2.1.js");
+define('KANDY_FCS_URL', site_url() . "/wp-content/plugins/kandy/js/fcs-3.0.4.js");
+
 define('KANDY_JQUERY', "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js");
 define('KANDY_JQUERY_RELOAD', false);
 define('KANDY_SSL_VERIFY', false);
@@ -74,7 +75,8 @@ function kandy_install() {
 
         require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
         dbDelta( $sql );
-
+        delete_option( "kandy_fcs_url" );
+        delete_option( "kandy_js_url" );
         update_option( 'kandy_db_version', $kandyDbVersion );
     }
 }

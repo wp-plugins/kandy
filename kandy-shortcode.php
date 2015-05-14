@@ -65,8 +65,8 @@ class KandyShortcode {
      */
     function kandy_get_name_for_contact_callback() {
         $contacts = array();
-        if(isset($_GET['data'])) {
-            $contacts = $_GET['data'];
+        if(isset($_POST['data'])) {
+            $contacts = $_POST['data'];
             foreach ($contacts as &$contact) {
                 $user = KandyApi::getUserByKandyUserMail($contact['contact_user_name']);
                 if(!empty($user)) {
@@ -93,8 +93,8 @@ class KandyShortcode {
     public function kandy_get_name_for_chat_content_callback()
     {
         $messages = array();
-        if(isset($_GET['data'])) {
-            $messages = $_GET['data'];
+        if(isset($_POST['data'])) {
+            $messages = $_POST['data'];
             foreach ($messages as &$message) {
                 if (!isset($message['sender'])) {
                     continue;
@@ -140,14 +140,14 @@ class KandyShortcode {
             'kandy_js_url',
             $kandyJsUrl,
             array('jquery'),
-            '4.1',
+            KANDY_PLUGIN_VERSION,
             true
         );
         wp_register_script(
             'kandy_fcs_url',
             $kandyFcsUrl,
             array('jquery'),
-            '4.1',
+            KANDY_PLUGIN_VERSION,
             true
         );
 
@@ -196,31 +196,31 @@ class KandyShortcode {
             'kandy_wordpress_css',
             KANDY_PLUGIN_URL . "/css/kandyWordpress.css",
             array(),
-            '4.1'
+            KANDY_PLUGIN_VERSION
         );
         wp_register_style(
             'kandy_addressbook_css',
             KANDY_PLUGIN_URL . "/css/shortcode/KandyAddressBook.css",
             array(),
-            '4.1'
+            KANDY_PLUGIN_VERSION
         );
         wp_register_style(
             'kandy_chat_css',
             KANDY_PLUGIN_URL . "/css/shortcode/KandyChat.css",
             array(),
-            '4.1'
+            KANDY_PLUGIN_VERSION
         );
         wp_register_style(
             'kandy_video_css',
             KANDY_PLUGIN_URL . "/css/shortcode/KandyVideo.css",
             array(),
-            '4.1'
+            KANDY_PLUGIN_VERSION
         );
         wp_register_style(
             'kandy_voice_css',
             KANDY_PLUGIN_URL . "/css/shortcode/KandyVoice.css",
             array(),
-            '4.1'
+            KANDY_PLUGIN_VERSION
         );
 	}
 
@@ -299,39 +299,110 @@ class KandyShortcode {
                 wp_enqueue_script("select-2-script", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.js');
                 wp_enqueue_style("select-2-style", KANDY_PLUGIN_URL . '/js/select2-3.5.2/select2.css');
 
-                //init class attribute
+                // Init class attribute.
                 $class = 'kandyButton ';
-                if(isset($attr['class'])){
-                    $class .= $attr['class'] ;
+                if (isset($attr['class']))
+                {
+                    $class .= $attr['class'];
                 }
 
-                //init id attribute
-                $id = 'kandy-video-button'. rand() . ' ';
-                if(isset($attr['id'])){
-                    $id = $attr['id'] ;
+                // Init id attribute.
+                $id = 'kandy-video-button' . rand() . ' ';
+                if (isset($attr['id']))
+                {
+                    $id = $attr['id'];
                 }
 
-                $output = '<div class="'. $class .'" id ="' . $id .'">' .
+                // Init incomingLabel attribute.
+                $incomingLabel = 'Incoming Call...';
+                if (isset($attr['incomingLabel'])) {
+                    $incomingLabel = ($attr['incomingLabel']);
+                }
+
+                // Init incomingLabel attribute.
+                $incomingButtonText = 'Answer';
+                if (isset($attr['incomingButtonText'])) {
+                    $incomingButtonText = ($attr['incomingButtonText']);
+                }
+
+                // Init incomingLabel attribute.
+                $rejectButtonText = 'Reject';
+                if (isset($attr['rejectButtonText'])) {
+                    $incomingButtonText = ($attr['rejectButtonText']);
+                }
+
+                // Init callOutLabel attribute.
+                $callOutLabel = 'User to call';
+                if (isset($attr['callOutLabel'])) {
+                    $callOutLabel = ($attr['callOutLabel']);
+                }
+
+                // Init callOutButtonText attribute.
+                $callOutButtonText = 'Call';
+                if (isset($attr['callOutButtonText'])) {
+                    $callOutButtonText = ($attr['callOutButtonText']);
+                }
+
+                // Init callOutLabel attribute.
+                $callingLabel = 'Calling...';
+                if (isset($attr['callingLabel'])) {
+                    $callingLabel = ($attr['callingLabel']);
+                }
+
+                // Init callOutButtonText attribute.
+                $callingButtonText = 'End Call';
+                if (isset($attr['callingButtonText'])) {
+                    $callingButtonText = ($attr['callingButtonText']);
+                }
+
+                // Init callOutLabel attribute.
+                $onCallLabel = 'You are connected!';
+                if (isset($attr['onCallLabel'])) {
+                    $onCallLabel = $attr['onCallLabel'];
+                }
+
+                // Init callOutButtonText attribute.
+                $onCallButtonText = 'End Call';
+                if (isset($attr['onCallButtonText'])) {
+                    $onCallButtonText = ($attr['onCallButtonText']);
+                }
+
+                // Init $holdCallButtonText attribute.
+                $holdCallButtonText = 'Hold Call';
+                if (isset($attr['holdCallButtonText'])) {
+                    $holdCallButtonText = ($attr['holdCallButtonText']);
+                }
+
+                // Init $resumeCallButtonText attribute.
+                $resumeCallButtonText = 'Resume Call';
+                if (isset($attr['resumeCallButtonText'])) {
+                    $resumeCallButtonText = ($attr['resumeCallButtonText']);
+                }
+
+                $ajaxUserSearchUrl = admin_url( 'admin-ajax.php' );
+
+                $output = '<div class="' . $class . '" id ="' . $id . '">' .
                     '<div class="kandyButtonComponent kandyVideoButtonSomeonesCalling" id="incomingCall">' .
-                    '<label>Incoming Call...</label>' .
-                    '<input class="btmAnswerVideoCall" type="button" value="Answer" onclick="kandy_answerVideoCall(this)"/>'.
-                    '</div>'.
+                    '<label>' . $incomingLabel . '</label>' .
+                    '<input class="btmAnswerVideoCall" type="button" value="' . $incomingButtonText . '" onclick="kandy_answer_video_call(this)"/>' .
+                    '<input style="visibility: hidden" class="btmAnswerRejectCall" type="button" onclick="kandy_reject_video_call(this)" value="' . $rejectButtonText . '"/>' .
+                    '</div>' .
 
-                    '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">'.
-                    '<label>User to call</label>'.
-                    '<input id="callOutUserId" type="text" value="" class="select2"/>'.
-                    '<input class="btnCall" id="callBtn" type="button" value="Call" onclick="kandy_make_video_call(this)"/>'.
-                    '</div>'.
+                    '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">' .
+                    '<label>' . $callOutLabel . '</label><input id="callOutUserId" data-ajax-url="' . $ajaxUserSearchUrl . '" type="text" value="" class="select2"/>' .
+                    '<input class="btnCall" id="callBtn" type="button" value="' . $callOutButtonText . '" onclick="kandy_make_video_call(this)"/>' .
+                    '</div>' .
 
                     '<div class="kandyButtonComponent kandyVideoButtonCalling" id="calling">' .
-                    '<label>Calling...</label>' .
-                    '<input type="button" class="btnEndCall" value="End Call" onclick="kandy_end_call(this)"/>' .
-                    '</div>'.
+                    '<label>' . $callingLabel . '</label>' .
+                    '<input type="button" class="btnEndCall" value="' . $callingButtonText . '" onclick="kandy_end_call(this)"/>' .
+                    '</div>' .
                     '<div class="kandyButtonComponent kandyVideoButtonOnCall" id="onCall">' .
-                    '<label>You are connected!</label>' .
-                    '<input class="btnEndCall" type="button" value="End Call" onclick="kandy_end_call(this)"/>'.
-                    '</div>'.
-                    '</div>';
+                    '<label>' . $onCallLabel . '</label>' .
+                    '<input class="btnEndCall" type="button" value="' . $onCallButtonText . '" onclick="kandy_end_call(this)"/>' .
+                    '<input style="visibility: hidden" class="btnHoldCall" type="button" value="' . $holdCallButtonText . '" onclick="kandy_hold_call(this)"/>' .
+                    '<input style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>' .
+                    '</div></div>';
 
                 if(isset($result['output'])){
                     $output .= $result['output'];
@@ -373,78 +444,98 @@ class KandyShortcode {
                     $id = $attr['id'] ;
                 }
 
-                //init incomingLabel attribute
+                // Init incomingLabel attribute.
                 $incomingLabel = 'Incoming Call...';
-                if(isset($attr['incomingLabel'])){
-                    $incomingLabel = $attr['incomingLabel'] ;
+                if (isset($attr['incomingLabel'])) {
+                    $incomingLabel = ($attr['incomingLabel']);
                 }
 
-                //init incomingLabel attribute
+                // Init incomingLabel attribute.
                 $incomingButtonText = 'Answer';
-                if(isset($attr['incomingButtonText'])){
-                    $incomingButtonText = $attr['incomingButtonText'] ;
+                if (isset($attr['incomingButtonText'])) {
+                    $incomingButtonText = ($attr['incomingButtonText']);
                 }
 
-                //init callOutLabel attribute
+                // Init callOutLabel attribute.
                 $callOutLabel = 'User to call';
-                if(isset($attr['callOutLabel'])){
-                    $callOutLabel = $attr['callOutLabel'] ;
+                if (isset($attr['callOutLabel'])) {
+                    $callOutLabel = ($attr['callOutLabel']);
                 }
 
-                //init callOutButtonText attribute
+                // Init callOutButtonText attribute.
                 $callOutButtonText = 'Call';
-                if(isset($attr['callOutButtonText'])){
-                    $callOutButtonText = $attr['callOutButtonText'] ;
+                if (isset($attr['callOutButtonText'])) {
+                    $callOutButtonText = ($attr['callOutButtonText']);
                 }
 
-                //init callOutLabel attribute
+                // Init callOutLabel attribute.
                 $callingLabel = 'Calling...';
-                if(isset($attr['callingLabel'])){
-                    $callingLabel = $attr['callingLabel'] ;
+                if (isset($attr['callingLabel'])) {
+                    $callingLabel = ($attr['callingLabel']);
                 }
 
-                //init callOutButtonText attribute
+                // Init callOutButtonText attribute.
                 $callingButtonText = 'End Call';
-                if(isset($attr['callingButtonText'])){
-                    $callingButtonText = $attr['callingButtonText'] ;
+                if (isset($attr['callingButtonText'])) {
+                    $callingButtonText = ($attr['callingButtonText']);
                 }
 
-                //init callOutLabel attribute
+                // Init callOutLabel attribute.
                 $onCallLabel = 'You are connected!';
-                if(isset($attr['onCallLabel'])){
-                    $onCallLabel = $attr['onCallLabel'] ;
+                if (isset($attr['onCallLabel'])) {
+                    $onCallLabel = $attr['onCallLabel'];
                 }
 
-                //init callOutButtonText attribute
+                // Init callOutButtonText attribute.
                 $onCallButtonText = 'End Call';
-                if(isset($attr['onCallButtonText'])){
-                    $onCallButtonText = $attr['onCallButtonText'] ;
+                if (isset($attr['onCallButtonText'])) {
+                    $onCallButtonText = ($attr['onCallButtonText']);
                 }
 
-                $output = '<div class="'. $class .'" id ="'. $id .'">' .
-                    '<div class="kandyButtonComponent kandyVideoButtonSomeonesCalling" id="incomingCall">' .
-                    '<label>'. $incomingLabel .'</label>' .
-                    '<input class="btnAnswerVoiceCall" type="button" value="'. $incomingButtonText .'" onclick="kandy_answerVoiceCall(this)"/>'.
-                    '</div>'.
+                // Init holdCallButtonText attribute.
+                $holdCallButtonText = 'Hold Call';
+                if (isset($attr['holdCallButtonText'])) {
+                    $holdCallButtonText = ($attr['holdCallButtonText']);
+                }
 
-                    '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">'.
-                    '<label>'. $callOutLabel .'</label>'.
-                    '<input id="callOutUserId" type="text" value="" class="select2"/>'.
-                    '<input class="btnCall" id="callBtn" type="button" value="'. $callOutButtonText .'" onclick="kandy_make_voice_call(this)"/>'.
-                    '</div>'.
+                // Init resumeCallButtonText attribute.
+                $resumeCallButtonText = 'Resume Call';
+                if (isset($attr['resumeCallButtonText'])) {
+                    $resumeCallButtonText = ($attr['resumeCallButtonText']);
+                }
+
+                // Init incomingLabel attribute.
+                $rejectButtonText = 'Reject';
+                if (isset($attr['rejectButtonText'])) {
+                    $incomingButtonText = ($attr['rejectButtonText']);
+                }
+
+                $ajaxUserSearchUrl = admin_url( 'admin-ajax.php' );
+
+                $output = '<div class="' . $class . '" id ="' . $id . '">' .
+                    '<div class="kandyButtonComponent kandyVideoButtonSomeonesCalling" id="incomingCall">' .
+                    '<label>' . $incomingLabel . '</label>' .
+                    '<input class="btnAnswerVoiceCall" type="button" value="' . $incomingButtonText . '" onclick="kandy_answerVoiceCall(this)"/>' .
+                    '<input style="visibility: hidden" class="btmAnswerRejectCall" type="button" onclick="kandy_reject_video_call(this)" value="' . $rejectButtonText . '"/>' .
+                    '</div>' .
+
+                    '<div class="kandyButtonComponent kandyVideoButtonCallOut" id="callOut">' .
+                    '<label>' . $callOutLabel . '</label>' .
+                    '<input id="callOutUserId" data-ajax-url="' . $ajaxUserSearchUrl . '" type="text" value="" class="select2"/>' .
+                    '<input class="btnCall" id="callBtn" type="button" value="' . $callOutButtonText . '" onclick="kandy_makeVoiceCall(this)"/>' .
+                    '</div>' .
 
                     '<div class="kandyButtonComponent kandyVideoButtonCalling" id="calling">' .
-                    '<label>'. $callingLabel .'</label>' .
-                    '<input type="button" class="btnEndCall" value="'. $callingButtonText .'" onclick="kandy_end_call(this)"/>' .
-                    '</div>'.
+                    '<label>' . $callingLabel . '</label>' .
+                    '<input type="button" class="btnEndCall" value="' . $callingButtonText . '" onclick="kandy_end_call(this)"/>' .
+                    '</div>' .
                     '<div class="kandyButtonComponent kandyVideoButtonOnCall" id="onCall">' .
-                    '<label>'. $onCallLabel .'</label>' .
-                    '<input class="btnEndCall" type="button" value=" '. $onCallButtonText .' " onclick="kandy_end_call(this)"/>'.
-                    '</div>'.
-                    '<div class="videoVoiceCallHolder">
-                        <span class="video"></span>
-                    </div>' .
-                    '</div>';
+                    '<label>' . $onCallLabel . '</label>' .
+                    '<input class="btnEndCall" type="button" value=" ' . $onCallButtonText . ' " onclick="kandy_end_call(this)"/>' .
+                    '<input style="visibility: hidden" class="btnHoldCall" type="button" value="' . $holdCallButtonText . '" onclick="kandy_hold_call(this)"/>' .
+                    '<input style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>' .
+
+                    '</div><div class="videoVoiceCallHolder"><div id="theirVideo" class="video"></div></div></div>';
                 if(isset($result['output'])){
                     $output .= $result['output'];
                 }
@@ -686,9 +777,10 @@ class KandyShortcode {
             if(get_option('kandy_jquery_reload', "0")){
                 wp_enqueue_script('kandy_jquery');
             }
-            wp_enqueue_script("kandy_js_url");
+
             wp_enqueue_script("kandy_fcs_url");
 
+            wp_enqueue_script("kandy_js_url");
             $output ="<script>if (window.login == undefined){window.login = function() {
                         KandyAPI.Phone.login('" . $kandyApiKey . "', '" . $userName . "', '" . $password . "');
                     };
