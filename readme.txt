@@ -101,4 +101,15 @@ Home page: http://www.kandy.io/
 6. Kandy edit css file
 7. Kandy Help
 
+== Changelog ==
+Version  2.2
+- Implement PSTN Call
+- Add AddContactLabel attribute
+- Fixed label attribute in shortcode
+- Fixed multiple voice call
+Version 1.4
+- Implement Voice Call feature
+- Implement Video Call feature
+- Implement Address Book feature
+- Implement Chat feature
 
