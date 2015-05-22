@@ -550,7 +550,6 @@ class KandyShortcode {
                             '<input data-container="'.$id.'" class="btnEndCall" type="button" value=" ' . $onCallButtonText . ' " onclick="kandy_end_call(this)"/>' .
                             '<input data-container="'.$id.'" style="visibility: hidden" class="btnHoldCall" type="button" value="' . $holdCallButtonText . '" onclick="kandy_hold_call(this)"/>' .
                             '<input data-container="'.$id.'" style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>' .
-
                             '</div><div class="videoVoiceCallHolder"><div id="theirVideo" class="video"></div></div></div>';
                     } else {
                         $output = '<div class="' . $class . '" id ="' . $id . '" data-call-id="">' .
@@ -573,9 +572,8 @@ class KandyShortcode {
                             '<label>' . $onCallLabel . '</label>' .
                             '<input data-container="'.$id.'" class="btnEndCall" type="button" value=" ' . $onCallButtonText . ' " onclick="kandy_end_call(this)"/>' .
                             '<input data-container="'.$id.'" style="visibility: hidden" class="btnHoldCall" type="button" value="' . $holdCallButtonText . '" onclick="kandy_hold_call(this)"/>' .
-                            '<input data-container="'.$id.'" style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>';
-
-
+                            '<input data-container="'.$id.'" style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>'.
+                            '</div><div class="videoVoiceCallHolder"><div id="theirVideo" class="video"></div></div></div>';
                     }
 
                 } else {
@@ -602,7 +600,6 @@ class KandyShortcode {
                             '<input data-container="'.$id.'"  class="btnEndCall" type="button" value=" ' . $onCallButtonText . ' " onclick="kandy_end_call(this)"/>' .
                             '<input data-container="'.$id.'"  style="visibility: hidden" class="btnHoldCall" type="button" value="' . $holdCallButtonText . '" onclick="kandy_hold_call(this)"/>' .
                             '<input data-container="'.$id.'"  style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>' .
-
                             '</div><div class="videoVoiceCallHolder"><div id="theirVideo" class="video"></div></div></div>';
                     } else {
                         $output = '<div class="' . $class . '" id ="' . $id . '" data-call-id="">' .
@@ -625,7 +622,8 @@ class KandyShortcode {
                             '<label>' . $onCallLabel . '</label>' .
                             '<input data-container="'.$id.'"  class="btnEndCall" type="button" value=" ' . $onCallButtonText . ' " onclick="kandy_end_call(this)"/>' .
                             '<input data-container="'.$id.'"  style="visibility: hidden" class="btnHoldCall" type="button" value="' . $holdCallButtonText . '" onclick="kandy_hold_call(this)"/>' .
-                            '<input data-container="'.$id.'"  style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>';
+                            '<input data-container="'.$id.'"  style="visibility: hidden" class="btnResumeCall" type="button" value="' . $resumeCallButtonText . '" onclick="kandy_resume_call(this)"/>'.
+                            '</div><div class="videoVoiceCallHolder"><div id="theirVideo" class="video"></div></div></div>';
                     }
                 }
                 if(isset($result['output'])){
