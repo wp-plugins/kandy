@@ -47,7 +47,9 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
         callingLabel = "Calling..."
         callingButtonText = "End Call"
         onCallLabel = "You are connected!"
-        onCallButtonText = "End Call"]
+        onCallButtonText = "End Call"
+        type = "PSTN"
+        callTo = "0123456789"]
 ```
   
 **Kandy Status**: make a kandy user status component (available, unavailable, awway, busy....). Kandy Status usually use with kandy address book component.
@@ -64,7 +66,7 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
         id = "myContact"
         title = "My Contact"
         userLabel = "User"
-        searchLabel = "Search"
+        addContactLabel = "Add Contact"
         searchResultLabel = "Directory Search Results"]
   ```
   
@@ -81,6 +83,17 @@ Kandy Wordpress Plugin help you use kandy in your website easily by following st
 ```sh
 [kandyVoiceButton class= "myButtonStyle" id ="my-voice-button"]
 ```
+
+**Kandy Voice PSTN Call**
+```sh
+[kandyVoiceButton class= "myButtonStyle" type = "PSTN" id ="my-voice-button"]
+```
+
+**Kandy Voice PSTN Call With Number**
+```sh
+[kandyVoiceButton class= "myButtonStyle" type = "PSTN" callTo = "0123456xxxx" id ="my-voice-button"]
+```
+
 **Kandy Video Call**: use a video call button and two video(**myVideo** and **theirVideo** id is required).
    ```sh
 [kandyVideoButton class="myButtonStyle"]
@@ -156,14 +169,6 @@ window.make_call_callback = function (stage) {
 
 window.end_call_callback = function (stage) {
    //do something when you click end call button
-}
-
-window.remote_video_initialized_callback(videoTag){
-   //do something with your remote video
-}
-
-window.local_video_initialized_callback = function(videoTag){
-    //do some thing with your local video
 }
 
 window.presence_notification_callback = function() {

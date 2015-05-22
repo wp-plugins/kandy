@@ -33,6 +33,8 @@ define('KANDY_VIDEO_THEIR_TITLE_DEFAULT', 'their');
 
 define('KANDY_UN_ASSIGN_USER', 'kandy-un-assign-user');
 
+define('KANDY_PSTN_TYPE', 'PSTN');
+
 require_once dirname(__FILE__) . '/kandy-admin-class.php';
 require_once dirname(__FILE__) . '/kandy-shortcode.php';
 require_once dirname(__FILE__) . '/api/kandy-api-class.php';
