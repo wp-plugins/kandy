@@ -68,7 +68,12 @@ class KandyShortcode {
         if(isset($_POST['data'])) {
             $contacts = $_POST['data'];
             foreach ($contacts as &$contact) {
-                $user = KandyApi::getUserByKandyUserMail($contact['contact_user_name']);
+                if(isset($contact['contact_user_name'])) {
+                    $user = KandyApi::getUserByKandyUserMail($contact['contact_user_name']);
+                } else {
+                    $user = KandyApi::getUserByKandyUserMail($contact['full_user_id']);
+                }
+
                 if(!empty($user)) {
                     if($user == KANDY_UN_ASSIGN_USER) {
                         $displayName = KANDY_UN_ASSIGN_USER;
@@ -210,6 +215,7 @@ class KandyShortcode {
             array(),
             KANDY_PLUGIN_VERSION
         );
+
         wp_register_style(
             'kandy_video_css',
             KANDY_PLUGIN_URL . "/css/shortcode/KandyVideo.css",
@@ -780,8 +786,21 @@ class KandyShortcode {
         if(!empty($attr)){
             $result = self::kandySetup();
             if($result['success']) {
+                global $wp_scripts;
                 wp_enqueue_script("kandy_chat_js");
                 wp_enqueue_style("kandy_chat_css");
+
+                wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+                wp_enqueue_script( 'jquery-ui-core' );
+                wp_enqueue_script( 'jquery-ui-dialog' );
+
+                // get registered script object for jquery-ui
+                $ui = $wp_scripts->query('jquery-ui-core');
+
+                // tell WordPress to load the Smoothness theme from Google CDN
+                $protocol = is_ssl() ? 'https' : 'http';
+                $url = "$protocol://ajax.googleapis.com/ajax/libs/jqueryui/{$ui->ver}/themes/smoothness/jquery-ui.min.css";
+                wp_enqueue_style('jquery-ui-smoothness', $url, false, null);
                 //init class attribute
                 $class = 'kandyChat ';
                 if(isset($attr['class'])){
@@ -814,6 +833,7 @@ class KandyShortcode {
                 if($assignUser) {
                     $output = '<div class="' . $class .' cd-tabs" id="'. $id .'" '. $htmlOptionsAttributes .' >'.
                         '<input type="hidden" class="kandy_current_username" value="'. $current_user->display_name .'"/>'.
+                        '<input type="hidden" class="kandy_user" value="'. $assignUser->user_id . '@' . $assignUser->domain_name .'"/>'.
                         '<div class="chat-heading">
                             <div class="contact-heading">
                             <label>'. $contactLabel .'</label>
@@ -831,13 +851,24 @@ class KandyShortcode {
                         </div>
                         <div class="chat-with-message">
                             Chatting with <span class="chat-friend-name"></span>
+
                         </div>
+                        <button id="btn-create-group-modal" class="chat-create-group">Create group</button>
                         <div class="clear-fix"></div>
                     </div>'.
-                        '<nav><ul class="cd-tabs-navigation"></ul></nav>'.
+                        '<nav>
+                            <ul class="cd-tabs-navigation contacts"></ul>
+                            <div class="separator hide"><span>Groups</span></div>
+                            <ul class="cd-tabs-navigation groups"></ul>
+                        </nav>'.
                         '<ul class="cd-tabs-content"></ul>'.
-                        '<div style="clear: both;"></div>'.
-                        '</div>';
+                        '<div style="clear: both;"></div>';
+
+
+                    $output .= '<div id="kandy-chat-create-group-modal" title="Create a new group">
+                                    <label for="right-label" class="right inline">Group name</label>
+                                    <input type="text" id="kandy-chat-create-session-name" placeholder="Group name">
+                                </div></div>';
                 } else {
                     $output = 'Not found kandy user';
                 }
