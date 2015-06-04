@@ -14,7 +14,7 @@ define("KANDY_PLUGIN_VERSION", "2.2.1");
 define("KANDY_PLUGIN_PREFIX", "kandy");
 define("KANDY_PLUGIN_URL", $pluginURL . "/" . plugin_basename(dirname(__FILE__)));
 define('KANDY_PLUGIN_DIR', dirname(__FILE__));
-define('KANDY_API_BASE_URL', 'https://api.kandy.io/v1.1/');
+define('KANDY_API_BASE_URL', 'https://api.kandy.io/v1.2/');
 define('KANDY_JS_URL', site_url() . "/wp-content/plugins/kandy/js/kandy-2.2.1.js");
 define('KANDY_FCS_URL', site_url() . "/wp-content/plugins/kandy/js/fcs-3.0.4.js");
 
