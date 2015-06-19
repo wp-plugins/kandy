@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: kandy
+ * Plugin Name: Kandy
  * Plugin URI: https://github.com/Kandy-IO/kandy-wordpress
- * Description: Kandy for wordpress.
+ * Description: Kandy Plugin is a full-service cloud platform that enables real-time communications for business applications.
  * Version: 2.2.1
  * Text Domain: kandy
  * Author: Kandy-IO
