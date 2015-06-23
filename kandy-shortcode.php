@@ -681,7 +681,7 @@ class KandyShortcode {
                     }
                 }
                 $output = '<div class="'. $class .'">'.
-                    '<span class="title"> ' . $title.' </span><select id="'. $id .'" class="dropDown" '. $htmlOptionsAttributes .' onchange="kandy_myStatusChanged($(this).val())">'.
+                    '<span class="title"> ' . $title.' </span><select id="'. $id .'" class="dropDown" '. $htmlOptionsAttributes .' onchange="kandy_myStatusChanged(jQuery(this).val())">'.
                     '<option value="0" selected>Available</option>'.
                     '<option value="1">Unavailable</option>'.
                     '<option value="2">Away</option>'.
@@ -837,7 +837,7 @@ class KandyShortcode {
                         '<div class="chat-heading">
                             <div class="contact-heading">
                             <label>'. $contactLabel .'</label>
-                            <select onchange="kandy_contactFilterChanged($(this).val())">
+                            <select onchange="kandy_contactFilterChanged(jQuery(this).val())">
                             <option value="all">All</option>
                             <option value="offline">Offline</option>
                             <option value="available">Available</option>
