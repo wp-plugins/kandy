@@ -991,7 +991,7 @@ var buildListParticipants = function(sessionId, participants, admin_id){
                     '<a>' + displayName +
                     '</a>' +
                     '<span class="actions">'+additionBtn +'</span>'+
-                    '<i class="status">'+status+'</i>' +
+                    '<div class="statusContainer"><i class="status"></i>'+ ((status) ? '<i class="group-status">(' + status + ')</i>' : '') + '</div>'+
                     '</li>'
                 );
             }
@@ -1246,7 +1246,7 @@ var kandy_onUserBoot = function(notification){
  * @param sessionId
  */
 var kandy_terminateGroup = function(sessionId){
-    var confirm = window.confirm("Dow you want to remove group " + groupNames[sessionId] +"?");
+    var confirm = window.confirm("Do you want to remove group " + groupNames[sessionId] +"?");
     if(confirm){
         KandyAPI.Session.terminate(
             sessionId,

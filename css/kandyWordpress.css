@@ -207,11 +207,21 @@
 
     text-indent: 16px;
 }
-.kandyChat .cd-tabs-navigation li i.status{
+.kandyChat .cd-tabs-navigation li i.status {
+	    display: block;
+}
+.kandyChat .cd-tabs-navigation li .statusContainer{
+	line-height:12px;
+}
+
+.kandyChat .cd-tabs-navigation li .statusContainer i{
+	    display: inline-block !important;
+}
+
+.kandyChat .cd-tabs-navigation li i.status,.kandyChat .cd-tabs-navigation li i.group-status  {
     font-size: 0.7em;
-    text-indent: 16px;
-    display: block;
     line-height: 1em;
+	text-indent:16px;
 }
 
 .kandyChat .cd-tabs-navigation li.kandy-chat-status-available > a{
