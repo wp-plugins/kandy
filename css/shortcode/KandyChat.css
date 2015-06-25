@@ -1,10 +1,16 @@
 /* KANDY CHAT STYLE */
-.myChatStyle .kandyMessages {
+.kandyChat .kandyMessages {
     background: #EFEFEF;
+    padding: 0 0 0 5px;
 }
 
-.myChatStyle .imUsername {
-    width:100px;
+.kandyChat .chat-heading {
+    padding: 5px 0;
+}
+
+.kandyChat .groups .list-users li a span {
+    font-size: 11px;
+    font-style: italic;
 }
 
 .myChatStyle .imMessageToSend {
@@ -13,10 +19,6 @@
 
 .myChatStyle .messages {
  
-}
-
-.myChatStyle .imMessage {
-    width:250px;
 }
 
 .myChatStyle .my-message {

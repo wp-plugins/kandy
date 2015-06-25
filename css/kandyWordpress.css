@@ -360,7 +360,7 @@
 .kandyChat .cd-tabs-content {
     background: #ffffff;
     height: 100%;
-    width: 64%;
+    width: 68%;
     float: left;
     margin: 0px !important;
     padding: 0px !important;
@@ -562,6 +562,7 @@
     font-size: 15px;
 }
 
-
-
-
+/* Pace */
+.pace .pace-progress {
+    z-index: 999999;
+}
