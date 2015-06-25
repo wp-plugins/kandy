@@ -424,11 +424,11 @@
 
 .kandyChat .input-message {
     float: left;
-    width: 87%;
+    width: 80%;
 }
 
 .kandyChat .button-send {
-    width: 12%;
+    width: 20%;
     float: right;
 }
 
