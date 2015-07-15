@@ -146,6 +146,25 @@ class KandySettingsPage extends KandyPage
                         </p>
                     </td>
                 </tr>
+                <tr valign="top" id="kandy_excluded_users_row">
+                    <th scope="row" id="kandy_excluded_users_label">
+                        <label for="kandy_excluded_user">
+                            <?php _e("Reserved kandy users", "kandy"); ?>
+                        </label>
+                    </th>
+                    <td>
+                        <input style="width: 60%" type="text" name="kandy_settings[kandy_excluded_users]" id="kandy_excluded_users"
+                            value="<?php echo get_option('kandy_excluded_users') ?>"/>
+                        <p class="description">
+                            <?php _e(
+                                'List of reserved kandy users, these users will not be assigned,separated by comma ","',
+                                'kandy'
+                            );
+                            ?>
+                        </p>
+                    </td>
+                </tr>
+
 
                 </tbody>
             </table>
