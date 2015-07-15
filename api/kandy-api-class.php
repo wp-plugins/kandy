@@ -101,6 +101,8 @@ class KandyApi{
     public static function listUsers($type = KANDY_USER_ALL, $remote = false)
     {
         $result = array();
+        $excludedUsers = preg_split('/[\s,]+/',get_option('kandy_excluded_users', ''));
+        $excludedUsers = implode('","', $excludedUsers);
         require_once dirname(__FILE__) . '/RestClient.php';
         // get data from server
         if ($remote) {
@@ -146,7 +148,9 @@ class KandyApi{
                     $result = $wpdb->get_results(
                         "SELECT *
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE domain_name = '". $domainName ."'");
+                             WHERE domain_name = '". $domainName ."'
+                             AND user_id NOT IN(\"".$excludedUsers."\")"
+                    );
                 } else {
                     if ($type == KANDY_USER_ASSIGNED) {
 
@@ -161,12 +165,13 @@ class KandyApi{
                             $result = $wpdb->get_results(
                                 "SELECT *
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE main_user_id = '' || main_user_id IS NULL
-                             AND domain_name = '". $domainName ."'");
+                             WHERE (main_user_id = '' || main_user_id IS NULL)
+                             AND domain_name = '". $domainName ."' AND user_id NOT IN(\"".$excludedUsers."\")");
                         }
                     }
                 }
             }
+
 
         }
 
@@ -575,5 +580,108 @@ class KandyApi{
         }
 
         return $result;
+    }
+
+    /**
+     * Get last seen of kandy users
+     * @param array $users
+     * @return mixed|null
+     */
+    public function getLastSeen($users)
+    {
+        $result = $this->getDomainAccessToken();
+        if ($result['success'] == true) {
+            $this->domainAccessToken = $result['data'];
+        } else {
+            // Catch errors
+        }
+
+        $users = json_encode($users);
+
+        $params = array(
+            'key' => $this->domainAccessToken,
+            'users' => $users
+        );
+        $url = KANDY_API_BASE_URL . 'users/presence/last_seen?' . http_build_query($params);
+        try{
+            $response = json_decode((new RestClient())->get($url)->getContent());
+        }catch (\Exception $e){
+            $response = null;
+        }
+        return $response;
+
+    }
+
+
+    public static function getListAgents($limit, $offset) {
+        global $wpdb;
+        $kandyUserTable = $wpdb->prefix . 'kandy_users';
+        $mainUserTable = $wpdb->prefix . 'users';
+        $agentType = KANDY_USER_TYPE_AGENT;
+        $rateTable = $wpdb->prefix . 'kandy_live_chat_rate';
+        $sql = "SELECT $kandyUserTable.id AS id, $mainUserTable.user_email,
+                  user_nicename, user_id AS kandy_user, $kandyUserTable.main_user_id, avg($rateTable.point) as average, comment
+                FROM $mainUserTable
+                INNER JOIN $kandyUserTable ON $mainUserTable.ID = $kandyUserTable.main_user_id
+                LEFT JOIN $rateTable ON $mainUserTable.id = $rateTable.main_user_id
+                WHERE $kandyUserTable.type = $agentType
+                GROUP BY $mainUserTable.ID
+                ORDER BY average DESC
+                LIMIT $offset,$limit";
+        ;
+        $users = $wpdb->get_results($sql,ARRAY_A);
+        foreach ($users as &$user){
+            $urlRemove = self::page_url(
+                array(
+                    "action" => "remove",
+                    "id" => $user['id']
+                )
+            );
+            $urlView = self::page_url(array(
+                'action'    => 'view',
+                'id'        => $user['main_user_id']
+            ));
+            $user['action'] = '<a href="'. $urlRemove .'" class="button">Remove</a>';
+            $user['action'] .= '<a href="'.$urlView.'" class="button">View</a>';
+        }
+        return $users;
+    }
+
+    /**
+     * Get user for agent assignment
+     * @return mixed
+     */
+    public static function getUsersForChatAgent(){
+        global $wpdb;
+        $kandyUserTable = $wpdb->prefix . 'kandy_users';
+        $mainUserTable = $wpdb->prefix . 'users';
+        $agentType = KANDY_USER_TYPE_AGENT;
+        $sql =  "SELECT $kandyUserTable.id as id, $mainUserTable.user_nicename
+                FROM $mainUserTable
+                INNER JOIN $kandyUserTable
+                ON $mainUserTable.id = $kandyUserTable.main_user_id
+                WHERE $kandyUserTable.type is null or $kandyUserTable.type <> $agentType";
+        $users = $wpdb->get_results($sql);
+        return $users;
+
+    }
+
+    /**
+     * Get rating info of agent
+     * @param $agentId
+     * @param $limit
+     * @param $offset
+     * @return array|null
+     */
+    public static function getAgentRates($agentId, $limit, $offset)
+    {
+        global $wpdb;
+        $tableRate = $wpdb->prefix . 'kandy_live_chat_rate';
+        $agentId = intval($agentId);
+        $agentRates = $wpdb->get_results(
+            "SELECT * FROM $tableRate WHERE main_user_id = $agentId ORDER BY rated_time DESC LIMIT $offset,$limit",
+            ARRAY_A
+        );
+        return $agentRates;
     }
 }
