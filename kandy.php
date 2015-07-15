@@ -83,7 +83,7 @@ function kandy_install() {
                   domain_name varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                   api_key varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                   api_secret varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                  main_user_id varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+                  main_user_id bigint(20) COLLATE utf8_unicode_ci DEFAULT NULL,
                   created_at timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
                   updated_at timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
                   type tinyint(4) DEFAULT 0,
@@ -104,7 +104,7 @@ function kandy_install() {
         dbDelta($sql);
         $sql  = "CREATE TABLE IF NOT EXISTS ".$rate_table." (
                   id int(10) unsigned NOT NULL AUTO_INCREMENT,
-                  main_user_id varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  main_user_id bigint(20) COLLATE utf8_unicode_ci NOT NULL,
                   rated_by varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                   rated_time int(11) NOT NULL DEFAULT '0',
                   point int(11) NOT NULL,

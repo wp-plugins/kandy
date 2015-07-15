@@ -165,7 +165,7 @@ class KandyApi{
                             $result = $wpdb->get_results(
                                 "SELECT *
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE (main_user_id = '' || main_user_id IS NULL)
+                             WHERE (main_user_id = 0 || main_user_id IS NULL)
                              AND domain_name = '". $domainName ."' AND user_id NOT IN(\"".$excludedUsers."\")");
                         }
                     }
