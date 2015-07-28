@@ -61,6 +61,7 @@
             sessions.forEach(function(session){
                 //only use session with type = cobrowsing
                 if(session.session_type == 'cobrowsing'){
+                    sessionNames[session.session_id] = session.session_name;
                     openSessions.push(session);
                     if((session.admin_full_user_id == currentKandyUser) && (myOwnSessions.indexOf(session.session_id) == -1)){
                         myOwnSessions.push(session.session_id);
@@ -133,7 +134,7 @@
         slSessionList.on('change',displayButtons);
 
         btnTerminate.on('click', function(){
-            var confirm = window.confirm("are you sure to terminate this session?")
+            var confirm = window.confirm("Are you sure to terminate this session?")
             if(confirm){
                 var session = openSessions[parseInt(slSessionList.val())];
                 myOwnSessions.splice(myOwnSessions.indexOf(session.session_id,1));

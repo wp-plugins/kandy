@@ -5,6 +5,7 @@
 
 
 var activeContainerId;
+var sessionNames = {};
 
 // Create audio objects to play incoming calls and outgoing calls sound
 var $audioRingIn = jQuery('<audio>', { loop: 'loop', id: 'ring-in' });
@@ -1174,7 +1175,7 @@ var kandy_onJoinRequest = function(notification){
  * @param notification
  */
 var kandy_onSessionJoinRequest = function(notification) {
-    var message = 'User '+notification.full_user_id+' request to join session '+ notification.session_id;
+    var message = 'User '+notification.full_user_id+' request to join session '+ sessionNames[notification.session_id];
     var confirm = window.confirm(message);
     if(confirm){
         kandy_ApproveJoinSession(notification.session_id, notification.full_user_id);
