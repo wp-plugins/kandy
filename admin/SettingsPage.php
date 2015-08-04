@@ -124,28 +124,6 @@ class KandySettingsPage extends KandyPage
                         </p>
                     </td>
                 </tr>
-
-                <tr valign="top" id="kandy_fcs_url_row">
-                    <th scope="row" id="kandy_fcs_url_label">
-                        <label for="kandy_fcs_url">
-                            <?php _e("FCS Library Url", "kandy") ?>
-                        </label>
-                    </th>
-                    <td id="kandy_fcs_url_field">
-                        <input name="kandy_settings[kandy_fcs_url]" type="text"
-                               id="kandy_fcs_url"
-                               placeholder="" class="" value="<?php echo get_option('kandy_fcs_url', KANDY_FCS_URL) == "" ? KANDY_FCS_URL: get_option('kandy_fcs_url', KANDY_FCS_URL); ?>"
-                               style="width:60%"
-                               disabled>
-
-                        <p class="description">
-                            <?php _e(
-                                "A kandy FCS library url required for the Kandy API.",
-                                "kandy"
-                            ); ?>
-                        </p>
-                    </td>
-                </tr>
                 <tr valign="top" id="kandy_excluded_users_row">
                     <th scope="row" id="kandy_excluded_users_label">
                         <label for="kandy_excluded_user">

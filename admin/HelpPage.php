@@ -223,9 +223,6 @@ class KandyHelpPage extends KandyPage
             <li style="box-sizing: border-box;">
                 <strong style="box-sizing: border-box;">Javascript Library Url</strong>: Link to kandy javascript library.
             </li>
-            <li style="box-sizing: border-box;">
-                <strong style="box-sizing: border-box;">FCS Library Url</strong>: Link to kandy FCS javascript library.
-            </li>
         </ul>
 
         <p style="box-sizing: border-box; margin-top: 0px; margin-bottom: 16px; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', Arial, freesans, sans-serif; font-size: 16px; line-height: 28px;">

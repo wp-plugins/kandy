@@ -165,7 +165,7 @@ class KandyApi{
                             $result = $wpdb->get_results(
                                 "SELECT *
                              FROM {$wpdb->prefix}kandy_users
-                             WHERE (main_user_id = 0 || main_user_id IS NULL)
+                             WHERE (main_user_id = '' || main_user_id IS NULL)
                              AND domain_name = '". $domainName ."' AND user_id NOT IN(\"".$excludedUsers."\")");
                         }
                     }
@@ -560,11 +560,9 @@ class KandyApi{
             $password = $assignUser->password;
             $kandyApiKey = get_option('kandy_api_key', KANDY_API_KEY);
             wp_enqueue_script("kandy_js_url");
-            wp_enqueue_script("kandy_fcs_url");
             $output = "";
             $output .="<script type='text/javascript' src='". KANDY_JQUERY ."'></script>";
             $output .="<script type='text/javascript' src='". KANDY_JS_URL ."'></script>";
-            $output .="<script type='text/javascript' src='". KANDY_FCS_URL ."'></script>";
             $output .="<script>if (window.login == undefined){window.login = function() {
                         KandyAPI.Phone.login('" . $kandyApiKey . "', '" . $userName . "', '" . $password . "');
                     };
@@ -683,5 +681,35 @@ class KandyApi{
             ARRAY_A
         );
         return $agentRates;
+    }
+
+    public static function logKandyUserStatus($kandyUserId, $userType, $logType = KANDY_USER_STATUS_ONLINE){
+        global $wpdb;
+        $userLoginTable = $wpdb->prefix . 'kandy_user_login';
+        $now = time();
+        $affectedRows = $wpdb->update(
+            $userLoginTable,
+            array(
+                'status' => $logType,
+                'time'  => $now
+            ),
+            array(
+                'kandy_user_id' => $kandyUserId
+            )
+        );
+        if(!$affectedRows){
+            $wpdb->insert(
+                $userLoginTable,
+                array(
+                    'kandy_user_id' => $kandyUserId,
+                    'type'          => $userType,
+                    'status'        => $logType,
+                    'browser_agent' => '',
+                    'ip_address'    => $_SERVER['REMOTE_ADDR'],
+                    'time'          => $now
+                ), array('%s', '%d', '%d', '%s', '%s')
+            );
+        }
+
     }
 }

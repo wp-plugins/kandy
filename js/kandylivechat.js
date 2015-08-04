@@ -59,6 +59,19 @@ var login_fail_callback = function (){
     LiveChatUI.changeState("UNAVAILABLE");
 };
 
+var heartBeat = function(interval){
+    return setInterval(function(){
+        jQuery.get(ajax_object.ajax_url + '?action=kandy_still_alive');
+    },parseInt(interval));
+};
+var setup = function(){
+    kandy.setup({
+        listeners: {
+            message: onMessage
+        }
+    })
+};
+
 var getKandyUsers = function(){
     jQuery.ajax({
         url: ajax_object.ajax_url + '?action=kandy_get_free_user',
@@ -77,8 +90,9 @@ var getKandyUsers = function(){
                 }
                 var username = res.user.full_user_id.split('@')[0];
                 login(res.apiKey, username, res.user.password, login_success_callback, login_fail_callback);
+                setup();
                 agent = res.agent;
-                setInterval(getIm, 3000);
+                heartBeat(60000);
             }else{
                 if(!checkAvailable){
                     checkAvailable = setInterval(getKandyUsers, 5000);
@@ -116,26 +130,19 @@ var sendIM = function(username, message){
     );
 };
 
-var getIm = function(){
-    KandyAPI.Phone.getIm(
-        //success callback
-        function(data){
-            if(data.messages.length){
-                for(var i = 0; i< data.messages.length; i++){
-                    var msg = data.messages[i];
-                    if(msg.messageType == 'chat'){
-                        var sender = agent.username;
-                        var message = msg.message.text;
-                        var messageBox = jQuery("#messageBox");
-                        messageBox.find("ul").append("<li class='their-message'><span class='username'>"+sender+": </span>"+message+"</li>");
-                        messageBox.scrollTop(messageBox[0].scrollHeight);
-                    }
-                }
+var onMessage = function(msg){
+    if(msg){
+        if(msg.messageType == 'chat' && msg.contentType === 'text' && msg.message.mimeType == 'text/plain') {
+            if (msg.messageType == 'chat') {
+                var sender = agent.username;
+                var message = msg.message.text;
+                var messageBox = jQuery("#messageBox");
+                messageBox.find("ul").append("<li class='their-message'><span class='username'>" + sender + ": </span>" + message + "</li>");
+                messageBox.scrollTop(messageBox[0].scrollHeight);
             }
-        },
-        //fail callback
-        function(){}
-    )
+        }
+    }
+
 };
 
 jQuery(function(){

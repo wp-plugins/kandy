@@ -3,20 +3,19 @@
  * Plugin Name: Kandy
  * Plugin URI: https://github.com/Kandy-IO/kandy-wordpress
  * Description: Kandy Plugin is a full-service cloud platform that enables real-time communications for business applications.
- * Version: 2.2.1
+ * Version: 2.3.0
  * Text Domain: kandy
  * Author: Kandy-IO
  * Author URI: https://github.com/Kandy-IO
  * License: GPL2
  */
 $pluginURL = is_ssl() ? str_replace("http://", "https://", WP_PLUGIN_URL) : WP_PLUGIN_URL;
-define("KANDY_PLUGIN_VERSION", "2.2.2");
+define("KANDY_PLUGIN_VERSION", "2.3.0");
 define("KANDY_PLUGIN_PREFIX", "kandy");
 define("KANDY_PLUGIN_URL", $pluginURL . "/" . plugin_basename(dirname(__FILE__)));
 define('KANDY_PLUGIN_DIR', dirname(__FILE__));
 define('KANDY_API_BASE_URL', 'https://api.kandy.io/v1.2/');
-define('KANDY_JS_URL', site_url() . "/wp-content/plugins/kandy/js/kandy-2.2.1.js");
-define('KANDY_FCS_URL', site_url() . "/wp-content/plugins/kandy/js/fcs-3.0.4.js");
+define('KANDY_JS_URL', 'https://kandy-portal.s3.amazonaws.com/public/javascript/kandy/2.3.0/kandy.js');
 
 define('KANDY_JQUERY', "https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js");
 define('KANDY_JQUERY_RELOAD', false);
@@ -38,6 +37,9 @@ define('KANDY_COBROWSING_JS', 'https://kandy-portal.s3.amazonaws.com/public/java
 
 define('KANDY_USER_TYPE_AGENT', 1);
 define('KANDY_USER_TYPE_NORMAL', 0);
+define('KANDY_USER_TYPE_END_USER', 2);
+define('KANDY_USER_STATUS_ONLINE', 1);
+define('KANDY_USER_STATUS_OFFLINE', 0);
 
 require_once dirname(__FILE__) . '/kandy-admin-class.php';
 require_once dirname(__FILE__) . '/kandy-shortcode.php';
@@ -54,6 +56,26 @@ add_action('init', function(){
     }
 });
 
+add_action('wp_login', 'onUserLogin',10,2);
+
+add_action('clear_auth_cookie', 'onUserLogout');
+
+function onUserLogout() {
+    $user = wp_get_current_user();
+    $kandyUser = KandyApi::getAssignUser($user->ID);
+    if($kandyUser->type == KANDY_USER_TYPE_AGENT) {
+        KandyApi::logKandyUserStatus($kandyUser->user_id,KANDY_USER_TYPE_AGENT, KANDY_USER_STATUS_OFFLINE);
+    };
+
+}
+
+function onUserLogin($userLogin, $wpUser) {
+    $kandyUser = KandyApi::getAssignUser($wpUser->ID);
+    if($kandyUser->type == KANDY_USER_TYPE_AGENT) {
+        KandyApi::logKandyUserStatus($kandyUser->user_id, KANDY_USER_TYPE_AGENT);
+    }
+}
+
 //active plugin
 register_activation_hook( __FILE__, 'kandy_install' );
 //uninstall plugin
@@ -65,10 +87,10 @@ register_uninstall_hook( __FILE__, 'kandy_uninstall' );
 function kandy_install() {
     global $wpdb;
     $kandyDbVersion = KANDY_PLUGIN_VERSION;
-
     $table_name = $wpdb->prefix . 'kandy_users';
     $livechat_table = $wpdb->prefix . 'kandy_live_chat';
     $rate_table = $wpdb->prefix . 'kandy_live_chat_rate';
+    $user_login_table = $wpdb->prefix . 'kandy_user_login';
     $installed_ver = get_option( "kandy_db_version" );
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
@@ -83,7 +105,7 @@ function kandy_install() {
                   domain_name varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                   api_key varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                   api_secret varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-                  main_user_id bigint(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+                  main_user_id varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
                   created_at timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
                   updated_at timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
                   type tinyint(4) DEFAULT 0,
@@ -104,7 +126,7 @@ function kandy_install() {
         dbDelta($sql);
         $sql  = "CREATE TABLE IF NOT EXISTS ".$rate_table." (
                   id int(10) unsigned NOT NULL AUTO_INCREMENT,
-                  main_user_id bigint(20) COLLATE utf8_unicode_ci NOT NULL,
+                  main_user_id varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                   rated_by varchar(255) COLLATE utf8_unicode_ci NOT NULL,
                   rated_time int(11) NOT NULL DEFAULT '0',
                   point int(11) NOT NULL,
@@ -113,7 +135,18 @@ function kandy_install() {
                   KEY kandy_live_chat_rate_main_user_id_index (main_user_id)
                 );";
         dbDelta( $sql );
-        delete_option( "kandy_fcs_url" );
+        $sql = "CREATE TABLE ". $user_login_table." (
+                  id int(10) unsigned NOT NULL AUTO_INCREMENT,
+                  kandy_user_id varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  type tinyint(4) NOT NULL,
+                  status tinyint(4) NOT NULL,
+                  browser_agent varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+                  ip_address text COLLATE utf8_unicode_ci NOT NULL,
+                  time int(11) DEFAULT NULL,
+                  PRIMARY KEY (id),
+                  KEY kandy_user_login_kandy_user_id_index (kandy_user_id)
+                );";
+        dbDelta($sql);
         delete_option( "kandy_js_url" );
         update_option( 'kandy_db_version', $kandyDbVersion );
     }
@@ -129,12 +162,14 @@ function kandy_uninstall(){
     $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}kandy_users" );
     $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}kandy_live_chat" );
     $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}kandy_live_chat_rate" );
+    $wpdb->query( "DROP TABLE IF EXISTS {$wpdb->prefix}kandy_user_login" );
 
     delete_option( "kandy_db_version" );
     delete_option( "kandy_api_key" );
     delete_option( "kandy_domain_name" );
     delete_option( "kandy_domain_secret_key" );
-    delete_option( "kandy_fcs_url" );
     delete_option( "kandy_jquery_reload" );
     delete_option( "kandy_js_url" );
+    delete_option( "kandy_excluded_users" );
+    delete_option( "kandy_live_chat_users" );
 }

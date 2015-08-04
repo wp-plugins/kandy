@@ -51,6 +51,14 @@
             }
         }
     }
+    var hideAllButtons = function (){
+        btnConnect.hide();
+        btnLeave.hide();
+        btnStartBrowsingViewer.hide();
+        btnStartCoBrowsing.hide();
+        btnStop.hide();
+        btnTerminate.hide();
+    };
 
     window.loadSessionList = function(sessions) {
         var i = 0;
@@ -80,6 +88,8 @@
                 }
             });
             setTimeout(displayButtons,3000);
+        } else {
+            hideAllButtons();
         }
 
     };

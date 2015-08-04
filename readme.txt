@@ -3,7 +3,7 @@ Contributors: kandy-io
 Tags: kandy, webrtc, audio, video, chat, streaming, video-streaming, live-streaming, peer-to-peer video, collaboration
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 2.2.1
+Stable tag: 2.3.0
 License: GPLv2
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -102,14 +102,19 @@ Home page: http://www.kandy.io/
 7. Kandy Help
 
 == Changelog ==
-Version  2.2
-- Implement PSTN Call
-- Add AddContactLabel attribute
-- Fixed label attribute in shortcode
-- Fixed multiple voice call
-Version 1.4
-- Implement Voice Call feature
-- Implement Video Call feature
-- Implement Address Book feature
-- Implement Chat feature
+= 2.3 =
+* Upgrade kandy API 2.3.0
+* Implement groupchat using new kandy groupchat api
+* Implement sms, live chat, cobrowsing
+* Fix bugs
+= 2.2 =
+* Implement PSTN Call
+* Add AddContactLabel attribute
+* Fixed label attribute in shortcode
+* Fixed multiple voice call
+= 1.4 =
+* Implement Voice Call feature
+* Implement Video Call feature
+* Implement Address Book feature
+* Implement Chat feature
 
