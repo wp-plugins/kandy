@@ -103,7 +103,7 @@ Home page: http://www.kandy.io/
 
 == Changelog ==
 = 2.3 =
-* Upgrade kandy API 2.3.0
+* Upgrade kandy JS SDK 2.3.0
 * Implement groupchat using new kandy groupchat api
 * Implement sms, live chat, cobrowsing
 * Fix bugs
